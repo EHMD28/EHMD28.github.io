@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: xx-large;
+    background-color: darkblue;
+    color: whitesmoke;
+}
+
+main {
+    height: 1000px;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+a {
+    color: blue;
+}
+
+p {
+    font-size: large;
+    text-indent: 50px;
+    line-height: 200%;
+
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+h2 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+h3 {
+    margin-left: 1.5vw;
+}
+
+footer {
+    height: 20vh;
+    background-color: black;
+}
