@@ -1,7 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+article {
+    background-color: rgb(33, 32, 36);
 }
 
 header {
@@ -21,10 +25,12 @@ main {
     margin-right: 2vw;
     margin-top: 5vh;
     margin-bottom: 5vh;
+
+    /* background-color: rgb(33, 32, 36); */
 }
 
 a {
-    color: blue;
+    color: lightskyblue;
 }
 
 p {
@@ -34,11 +40,17 @@ p {
 
     margin-top: 2vh;
     margin-bottom: 2vh;
+
+    color: white;
 }
 
 h2 {
     margin-top: 5vh;
     margin-bottom: 5vh;
+
+    font-size: x-large;
+    text-align: center;
+    color: white;
 }
 
 h3 {
