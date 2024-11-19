@@ -13,8 +13,8 @@ header {
     flex-direction: row;
     align-items: center;
     height: 50px;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
     
     font-size: xx-large;
     background-color: darkblue;
@@ -25,10 +25,38 @@ header>h1 {
     font-size: large;
 }
 
-div#projects {
-    font-size: large;
+header>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
 }
+
+header>div>button {
+    border: none;
+    background: none;
+    font-size: large;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropdown-btn {color: gray;}
 
 main {
     height: 1000px;
@@ -39,11 +67,12 @@ main {
 }
 
 a {
+    font-size: small;
     color: rgb(135, 206, 250);
 }
 
 a:hover {
-    color: rgb(107, 197, 254);
+    color: rgb(97, 97, 255);
 }
 
 p {
