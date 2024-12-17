@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+article {
+    background-color: rgb(33, 32, 36);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    
+    font-size: xx-large;
+    background-color: darkblue;
+    color: whitesmoke;
+}
+
+header>h1 {
+    font-size: large;
+}
+
+header>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+header>div>button {
+    border: none;
+    background: none;
+    font-size: large;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropdown-btn {color: gray;}
+
+main {
+    height: 1000px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+
+    /* background-color: rgb(33, 32, 36); */
+}
+
+a {
+    font-size: small;
+    color: rgb(135, 206, 250);
+}
+
+a:hover {
+    color: rgb(97, 97, 255);
+}
+
+p {
+    font-size: large;
+    text-indent: 50px;
+    line-height: 200%;
+
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+
+    color: white;
+}
+
+h2 {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+    font-size: x-large;
+    text-align: center;
+    color: white;
+}
+
+h3 {
+    margin-left: 1.5vw;
+}
+
+footer {
+    height: 20vh;
+    padding: 2vh;
+    background-color: black;
+}
