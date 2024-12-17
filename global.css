@@ -1,106 +1,55 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-article {
-    background-color: rgb(33, 32, 36);
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 50px;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    
-    font-size: xx-large;
-    background-color: darkblue;
-    color: whitesmoke;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    background-color: rgb(0, 0, 140);
+    color: white;
 }
 
 header>h1 {
-    font-size: large;
+    vertical-align: middle;
+    text-align: center;
 }
-
-header>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-}
-
-header>div>button {
-    border: none;
-    background: none;
-    font-size: large;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 160px;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content a {
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropdown-btn {color: gray;}
 
 main {
-    height: 1000px;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding: 20px;
+    height: 800px;
 
-    /* background-color: rgb(33, 32, 36); */
-}
-
-a {
-    font-size: small;
-    color: rgb(135, 206, 250);
-}
-
-a:hover {
-    color: rgb(97, 97, 255);
-}
-
-p {
-    font-size: large;
-    text-indent: 50px;
     line-height: 200%;
 
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-
+    background-color: rgb(35, 35, 35);
     color: white;
-}
-
-h2 {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-
-    font-size: x-large;
-    text-align: center;
-    color: white;
-}
-
-h3 {
-    margin-left: 1.5vw;
 }
 
 footer {
-    height: 20vh;
-    padding: 2vh;
+    padding: 20px;
+    height: 100px;
+
+    line-height: 200%;
+
     background-color: black;
+    color: white;
 }
