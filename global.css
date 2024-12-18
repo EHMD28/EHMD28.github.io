@@ -69,14 +69,18 @@ main {
     color: white;
 }
 
+main>h1 {
+    text-align: center;
+    padding: 20px;
+}
+
 .project-section>h1 {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
 }
 
 hr {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 
