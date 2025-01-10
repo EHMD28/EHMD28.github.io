@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <title>C Projects</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C Projects</title>
+  <link rel="stylesheet" href="../../global.css">
 </head>
+
 <body>
-  <h2>C Projects</h2>
-  <div>
-    <h3><a href="https://github.com/BlueHatDude/m-calc_ver.3" target="_blank">
-      M-Calculator
-    </a></h3>
-    <p>
-      This was my first non-trivial project in C. The project has gone through three iterations so far.
-      M-Calculator Version 1 was barely functional (and has been removed from Github). The program simply 
-      evaluated operators from left to right, ignoring order of operators. M-Calculator Version 2 was better,
-      taking into account order of operations. But the way the equation was represented was prone to error, and
-      there was no error checking on the inputs. M-Calculator Version 3 was built after I learned more about data 
-      structures, and I realized that it would be best to represent the tokens using a tree.
-      <strong>*M-Calculator Version 3 is still under development!</strong>
-    </p>
-  </div>
+  <article>
+    <header class="roboto-bold">
+      <h1><a href="../../index.html">BlueHatDude Personal Website</a></h1>
+      <div class="flex-container">
+        <h2><a href="c-projects.html">C Projects</a></h2>
+        <h2><a href="java-projects.html">Java Projects</a></h2>
+        <h2><a href="python-projects.html">Python Projects</a></h2>
+        <h2><a href="rust-projects.html">Rust Projects</a></h2>
+        <h2><a href="electronics-projects.html">Electronics Projects</a></h2>
+      </div>
+    </header>
+    <main class="roboto-regular">
+      <h1>Overview</h1>
+      <p>C is one of the first programming languages I learned, and it is my favorite to work with. I am someone who
+        enjoys learning how things work on a low level, so I enjoy the minimal abstractions that C provides. I will be
+        the first to admit that C isn't the most productive language for a lot of use cases, but I still enjoy learning
+        to implement things in C. I have also tried C++, but I don't have the same fondess for it that I do for C.</p>
+      <hr>
+      <div class="project-section">
+        <h1>M-Calculator Version 3</h1>
+        <div class="text-and-image">
+          <p>This was my first non-trivial project in C. The project has gone through three iterations so far.
+            M-Calculator Version 1 was barely functional (and has been removed from Github). The program simply
+            evaluated operators from left to right, ignoring order of operators. M-Calculator Version 2 was better,
+            taking into account order of operations. But the way the equation was represented was prone to error, and
+            there was no error checking on the inputs. M-Calculator Version 3 was built after I learned more about data
+            structures, and I implemented my first basic recursive descent parser. In the future, I plan to make an
+            M-Calculator Version 4, a fully-featured scientific calculator rather than just an expression evaluator.
+          </p>
+        </div>
+      </div>
+      <hr>
+      <div class="project-section">
+        <h1>Project Name</h1>
+        <div>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum assumenda quos
+            voluptatibus voluptates
+            voluptatem dolorem obcaecati nesciunt fuga quia nihil quibusdam aut, illum suscipit dolor unde commodi
+            pariatur aliquam libero.</p>
+        </div>
+      </div>
+      <hr>
+    </main>
+    <footer class="roboto-regular">
+      <h2>Contact Info</h2>
+    </footer>
+  </article>
 </body>
+
 </html>
