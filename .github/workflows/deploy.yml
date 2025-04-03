@@ -32,7 +32,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'test-output/'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
           
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+      
