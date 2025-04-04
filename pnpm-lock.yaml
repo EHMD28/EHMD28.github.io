@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      ehmd28.github.io:
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.8
