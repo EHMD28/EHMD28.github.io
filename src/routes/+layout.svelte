@@ -1,5 +1,6 @@
 <script>
 	import { base } from '$app/paths';
+	import '../app.css';
 
 	let { children } = $props();
 </script>
@@ -27,30 +28,6 @@
 </main>
 
 <style>
-	nav {
-		position: sticky;
-		top: 0;
-
-		margin-bottom: 1.25rem;
-		padding: 0 2.5rem;
-
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		background-color: rgb(0, 0, 255);
-	}
-
-	nav > div#links {
-		width: 25vw;
-
-		display: flex;
-		justify-content: space-around;
-	}
-
-	/* h2#dropdown-label {
-	} */
-
 	#dropdown-container {
 		position: relative;
 		display: inline-block;
@@ -74,19 +51,5 @@
 
 	#dropdown-container:hover #dropdown-content {
 		display: block;
-	}
-
-	main {
-		margin: 0 2rem;
-	}
-
-	h1 {
-		font-size: 2rem;
-		line-height: 3rem;
-	}
-
-	h2 {
-		font-size: 1.5rem;
-		line-height: 2rem;
 	}
 </style>
