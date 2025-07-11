@@ -15,26 +15,6 @@ main {
     margin: 0 2rem;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-
-    margin-bottom: 1.25rem;
-    padding: 0 2.5rem;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(0, 0, 255);
-}
-
-nav>div#links {
-    width: 25vw;
-
-    display: flex;
-    justify-content: space-around;
-}
 
 h1 {
     text-align: center;
@@ -51,6 +31,11 @@ p {
     padding: 2rem 0;
     font-size: 14pt;
     line-height: 2rem;
+}
+
+code {
+    width: 100%;
+    background-color: black;
 }
 
 a:hover {

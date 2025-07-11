@@ -9,17 +9,8 @@
 	<h1>EHMD28's Personal Website</h1>
 	<div id="links">
 		<h2><a href="{base}/">Home</a></h2>
-		<div id="dropdown-container">
-			<h2 id="dropdown-label">Projects</h2>
-			<div id="dropdown-content">
-				<h3><a href="{base}/projects/c">C</a></h3>
-				<h3><a href="{base}/projects/electronics">Electronics</a></h3>
-				<h3><a href="{base}/projects/java">Java</a></h3>
-				<h3><a href="{base}/projects/kotlin">Kotlin</a></h3>
-				<h3><a href="{base}/projects/python">Python</a></h3>
-				<h3><a href="{base}/projects/rust">Rust</a></h3>
-			</div>
-		</div>
+		<h2><a href="{base}/projects">Projects</a></h2>
+		<h2><a href="{base}/programs">Programs</a></h2>
 	</div>
 </nav>
 
@@ -28,28 +19,25 @@
 </main>
 
 <style>
-	#dropdown-container {
-		position: relative;
-		display: inline-block;
+	nav {
+		height: 10vh;
+		position: sticky;
+		top: 0;
+
+		margin-bottom: 1.25rem;
+		padding: 0 2.5rem;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		background-color: rgb(0, 0, 255);
 	}
 
-	#dropdown-content {
-		display: none;
-		background-color: rgb(0, 0, 75);
-		padding: 5px;
-		position: absolute;
-		z-index: 1;
-	}
+	nav > div#links {
+		width: 30vw;
 
-	#dropdown-content > h3:hover {
-		background-color: rgb(0, 0, 160);
-	}
-
-	#dropdown-content > h3 {
-		padding: 0.5rem;
-	}
-
-	#dropdown-container:hover #dropdown-content {
-		display: block;
+		display: flex;
+		justify-content: space-around;
 	}
 </style>
