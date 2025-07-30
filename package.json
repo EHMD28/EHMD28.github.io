@@ -23,7 +23,8 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"svelte": "^5.0.0",
 		"tailwindcss": "^4.0.0",
-		"vite": "^6.2.5"
+		"vite": "^7.0.6",
+		"vite-plugin-devtools-json": "^0.2.0"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
@@ -31,6 +32,8 @@
 		]
 	},
 	"dependencies": {
-		"ehmd28.github.io": "link:"
+		"ehmd28.github.io": "link:",
+		"french-verbs": "^5.4.0",
+		"french-verbs-lefff": "^3.4.0"
 	}
 }
