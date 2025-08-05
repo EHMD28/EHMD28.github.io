@@ -2,29 +2,7 @@ import type { Tense, Voice, ComposedTenseOptions } from 'french-verbs';
 import * as FrenchVerbs from 'french-verbs';
 import type { VerbsInfo } from 'french-verbs-lefff';
 import Lefff from 'french-verbs-lefff/dist/conjugations.json';
-
-export enum TermTypes {
-	NOUN = 'noun',
-	VERB = 'verb',
-	ADJECTIVE = 'adjective',
-	ADVERB = 'adverb',
-	ARTICLE = 'article',
-	PRONOUN = 'pronoun'
-}
-
-export enum NounGender {
-	MALE = 'm',
-	FEMALE = 'f'
-}
-
-export interface VerbConjugations {
-	je: string;
-	tu: string;
-	il: string;
-	vous: string;
-	nous: string;
-	ils: string;
-}
+import type { VerbConjugations } from './types';
 
 enum ConjugationPronoun {
 	JE = 0,
@@ -33,14 +11,6 @@ enum ConjugationPronoun {
 	NOUS,
 	VOUS,
 	ILS
-}
-
-export interface FlashCardData {
-	term: string;
-	term_type: TermTypes | undefined;
-	defintion: string;
-	gender: NounGender | undefined;
-	conjugations: VerbConjugations | undefined;
 }
 
 export function conjugations_to_string(vc: VerbConjugations): string {
@@ -91,34 +61,3 @@ export function conjugate_verb(verb: string): VerbConjugations | null {
 		return null;
 	}
 }
-
-export let global_flashcards: FlashCardData[] = [
-	{
-		term: 'être',
-		term_type: TermTypes.VERB,
-		gender: undefined,
-		defintion: 'to be',
-		conjugations: {
-			je: 'suis',
-			tu: 'es',
-			il: 'est',
-			vous: 'êtes',
-			nous: 'sommes',
-			ils: 'sont'
-		}
-	},
-	{
-		term: 'chat',
-		term_type: TermTypes.NOUN,
-		gender: NounGender.MALE,
-		defintion: 'cat',
-		conjugations: {
-			je: '',
-			tu: '',
-			il: '',
-			vous: '',
-			nous: '',
-			ils: ''
-		}
-	}
-];

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { global_flashcards } from '$lib';
+	import { global_flashcards } from '$lib/data.svelte';
+	import AddCardButton from '$lib/minerva/AddCardButton.svelte';
 	import FlashCard from '$lib/minerva/FlashCard.svelte';
 </script>
 
@@ -12,6 +13,7 @@
 {#each global_flashcards as { term, term_type, defintion, gender, conjugations }}
 	<FlashCard {term} {term_type} {defintion} {gender} {conjugations} />
 {/each}
+<AddCardButton />
 
 <style>
 	h1 {

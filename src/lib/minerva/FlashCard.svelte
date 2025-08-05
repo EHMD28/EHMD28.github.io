@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { conjugate_verb, conjugations_to_string, type FlashCardData } from '$lib';
+	import { conjugate_verb, conjugations_to_string } from '$lib';
+	import type { FlashCardData } from '$lib/types';
 
 	let { term, term_type, defintion, gender, conjugations }: FlashCardData = $props();
 
