@@ -1,9 +1,10 @@
 <script>
-	import { global_flashcards } from '$lib/data.svelte';
+	import { global_flashcards, print_global_flashcards } from '$lib/data.svelte';
 	import { new_flashcard_data } from '$lib/types';
 
 	function on_click() {
 		global_flashcards.push(new_flashcard_data());
+		print_global_flashcards();
 	}
 </script>
 
@@ -23,5 +24,6 @@
 
 	button.add-card:hover {
 		border: 2px solid blue;
+		cursor: pointer;
 	}
 </style>

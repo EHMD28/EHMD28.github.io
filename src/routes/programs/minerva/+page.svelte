@@ -10,8 +10,8 @@
 	goddess of wisdom. You can add French vocabulary alongside the conjugations (for the verbs).
 </p>
 
-{#each global_flashcards as { term, term_type, defintion, gender, conjugations }}
-	<FlashCard {term} {term_type} {defintion} {gender} {conjugations} />
+{#each global_flashcards as flashcard}
+	<FlashCard data={flashcard} />
 {/each}
 <AddCardButton />
 

@@ -1,21 +1,34 @@
 <script lang="ts">
 	import { conjugate_verb, conjugations_to_string } from '$lib';
+	import { global_flashcards, print_global_flashcards } from '$lib/data.svelte';
 	import type { FlashCardData } from '$lib/types';
 
-	let { term, term_type, defintion, gender, conjugations }: FlashCardData = $props();
+	let { data }: { data: FlashCardData } = $props();
 
-	function onDropdownChange() {}
+	// let { term, term_type, defintion, gender, conjugations }: FlashCardData = $props();
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			if (term_type === 'verb') {
-				let verb = term.toLowerCase().trim();
+			if (data.term_type === 'verb') {
+				let verb = data.term.toLowerCase().trim();
 				let conjugations = conjugate_verb(verb);
 				if (conjugations !== null) {
 					conjugations = conjugations;
-					console.log(`Set conjugations for "${term}" to ${conjugations_to_string(conjugations)}`);
+					// console.log(
+					// 	`Set conjugations for "${data.term}" to ${conjugations_to_string(conjugations)}`
+					// );
 				}
 			}
+		}
+	}
+
+	function handle_remove_button() {
+		let index = global_flashcards.findIndex((v) => v.term == data.term);
+		if (index > -1) {
+			/* Remove element at index from array. */
+			// console.log(`Removing term ${data.term} at ${index}`);
+			global_flashcards.splice(index, 1);
+			print_global_flashcards();
 		}
 	}
 </script>
@@ -23,15 +36,15 @@
 <div class="minerva-card">
 	<div class="container">
 		<label for="term">Term</label>
-		<input type="text" id="term" name="term" bind:value={term} onkeyup={handleTermKeyUp} />
+		<input type="text" id="term" name="term" bind:value={data.term} onkeyup={handleTermKeyUp} />
 	</div>
 	<div class="container">
 		<label for="definition">Definition</label>
-		<input type="text" id="definition" name="definition" bind:value={defintion} />
+		<input type="text" id="definition" name="definition" bind:value={data.defintion} />
 	</div>
 	<div class="container">
 		<label for="word-type">Word Type</label>
-		<select id="word-type" name="word-type" bind:value={term_type} onchange={onDropdownChange}>
+		<select id="word-type" name="word-type" bind:value={data.term_type}>
 			<option value="noun">Noun</option>
 			<option value="verb">Verb</option>
 			<option value="adjective">Adjective</option>
@@ -40,6 +53,7 @@
 			<option value="pronoun">Pronoun</option>
 		</select>
 	</div>
+	<button class="remove-button" onclick={handle_remove_button}>X</button>
 </div>
 
 <style>
@@ -55,9 +69,9 @@
 
 	.minerva-card {
 		display: grid;
-		grid-template-columns: 40% 40% 20%;
+		grid-template-columns: 40% 40% 15% 5%;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: space-around;
 		margin-bottom: 20px;
 		padding: 15px;
 		border: 2px solid white;
@@ -75,6 +89,22 @@
 		padding: 4px;
 		margin-left: 10px;
 		width: 70%;
+	}
+
+	button.remove-button {
+		width: fit-content;
+		padding: 5px 10px;
+		border-radius: 20px;
+		color: blue;
+		font-size: 18pt;
+		background: white;
+		border: none;
+	}
+
+	button.remove-button:hover {
+		color: rgb(184, 0, 0);
+		background-color: black;
+		cursor: pointer;
 	}
 
 	select,

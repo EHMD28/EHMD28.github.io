@@ -23,3 +23,10 @@ export let global_flashcards: FlashCardData[] = $state([
 		conjugations: undefined
 	}
 ]);
+
+export function print_global_flashcards() {
+	for (const [i, value] of global_flashcards.entries()) {
+		console.log(`${i}: ${value.term}`);
+	}
+	console.log('---------------------------');
+}
