@@ -23,10 +23,21 @@ export interface VerbConjugations {
 
 export interface FlashCardData {
 	term: string;
-	term_type: TermTypes | undefined;
+	term_type: TermTypes;
 	defintion: string;
-	gender: NounGender | undefined;
-	conjugations: VerbConjugations | undefined;
+	gender: NounGender;
+	conjugations: VerbConjugations;
+}
+
+export function new_conjugations(): VerbConjugations {
+	return {
+		je: '',
+		tu: '',
+		il: '',
+		vous: '',
+		nous: '',
+		ils: ''
+	};
 }
 
 export function new_flashcard_data(): FlashCardData {
@@ -34,7 +45,7 @@ export function new_flashcard_data(): FlashCardData {
 		term: '',
 		term_type: TermTypes.NOUN,
 		defintion: '',
-		gender: undefined,
-		conjugations: undefined
+		gender: NounGender.MALE,
+		conjugations: new_conjugations()
 	};
 }

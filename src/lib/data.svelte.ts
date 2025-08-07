@@ -1,10 +1,10 @@
-import { NounGender, TermTypes, type FlashCardData } from './types';
+import { new_conjugations, NounGender, TermTypes, type FlashCardData } from './types';
 
 export let global_flashcards: FlashCardData[] = $state([
 	{
 		term: 'être',
 		term_type: TermTypes.VERB,
-		gender: undefined,
+		gender: NounGender.MALE,
 		defintion: 'to be',
 		conjugations: {
 			je: 'suis',
@@ -20,7 +20,7 @@ export let global_flashcards: FlashCardData[] = $state([
 		term_type: TermTypes.NOUN,
 		gender: NounGender.MALE,
 		defintion: 'cat',
-		conjugations: undefined
+		conjugations: new_conjugations()
 	}
 ]);
 

@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { conjugate_verb } from '$lib';
-	import { global_flashcards, print_global_flashcards } from '$lib/data.svelte';
-	import { NounGender, TermTypes as TermType, type FlashCardData } from '$lib/types';
+	import { global_flashcards } from '$lib/data.svelte';
+	import {
+		new_conjugations,
+		new_flashcard_data,
+		NounGender,
+		TermTypes as TermType,
+		type FlashCardData
+	} from '$lib/types';
 
 	let { data }: { data: FlashCardData } = $props();
 
@@ -19,6 +25,25 @@
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
 			data.conjugations = conjugations;
+		}
+	}
+
+	function on_dropdown_change() {
+		switch (data.term_type) {
+			case TermType.NOUN:
+				if (data.gender === undefined) data.gender = NounGender.MALE;
+				break;
+			case TermType.VERB:
+				if (data.conjugations === undefined) data.conjugations = new_conjugations();
+				break;
+			case TermType.ADJECTIVE:
+				break;
+			case TermType.ADVERB:
+				break;
+			case TermType.ARTICLE:
+				break;
+			case TermType.PRONOUN:
+				break;
 		}
 	}
 
@@ -48,7 +73,6 @@
 		if (index > -1) {
 			/* Remove element at index from array. */
 			global_flashcards.splice(index, 1);
-			print_global_flashcards();
 		}
 	}
 </script>
@@ -65,7 +89,12 @@
 		</div>
 		<div id="word-type-container" class="container">
 			<label for="word-type">Word Type</label>
-			<select id="word-type" name="word-type" bind:value={data.term_type}>
+			<select
+				id="word-type"
+				name="word-type"
+				bind:value={data.term_type}
+				onchange={on_dropdown_change}
+			>
 				<option value="noun">Noun</option>
 				<option value="verb">Verb</option>
 				<option value="adjective">Adjective</option>
@@ -109,7 +138,8 @@
 	input:-webkit-autofill,
 	input:-webkit-autofill:hover,
 	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
+	input:-webkit-autofill:active,
+	input::spelling-error {
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: #ffffff;
 		transition: background-color 5000s ease-in-out 0s;
