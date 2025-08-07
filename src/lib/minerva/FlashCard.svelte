@@ -1,23 +1,44 @@
 <script lang="ts">
-	import { conjugate_verb, conjugations_to_string } from '$lib';
+	import { conjugate_verb } from '$lib';
 	import { global_flashcards, print_global_flashcards } from '$lib/data.svelte';
-	import type { FlashCardData } from '$lib/types';
+	import { NounGender, TermTypes as TermType, type FlashCardData } from '$lib/types';
 
 	let { data }: { data: FlashCardData } = $props();
 
-	// let { term, term_type, defintion, gender, conjugations }: FlashCardData = $props();
+	function handle_noun_term() {
+		let noun = data.term.toLowerCase().trim();
+		if (noun.startsWith('le')) {
+			data.gender = NounGender.MALE;
+		} else if (noun.startsWith('la')) {
+			data.gender = NounGender.FEMALE;
+		}
+	}
+
+	function handle_verb_term() {
+		let verb = data.term.toLowerCase().trim();
+		let conjugations = conjugate_verb(verb);
+		if (conjugations !== null) {
+			data.conjugations = conjugations;
+		}
+	}
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			if (data.term_type === 'verb') {
-				let verb = data.term.toLowerCase().trim();
-				let conjugations = conjugate_verb(verb);
-				if (conjugations !== null) {
-					conjugations = conjugations;
-					// console.log(
-					// 	`Set conjugations for "${data.term}" to ${conjugations_to_string(conjugations)}`
-					// );
-				}
+			switch (data.term_type) {
+				case TermType.NOUN:
+					handle_noun_term();
+					break;
+				case TermType.VERB:
+					handle_verb_term();
+					break;
+				case TermType.ADJECTIVE:
+					break;
+				case TermType.ADVERB:
+					break;
+				case TermType.ARTICLE:
+					break;
+				case TermType.PRONOUN:
+					break;
 			}
 		}
 	}
@@ -26,7 +47,6 @@
 		let index = global_flashcards.findIndex((v) => v.term == data.term);
 		if (index > -1) {
 			/* Remove element at index from array. */
-			// console.log(`Removing term ${data.term} at ${index}`);
 			global_flashcards.splice(index, 1);
 			print_global_flashcards();
 		}
@@ -34,26 +54,55 @@
 </script>
 
 <div class="minerva-card">
-	<div class="container">
-		<label for="term">Term</label>
-		<input type="text" id="term" name="term" bind:value={data.term} onkeyup={handleTermKeyUp} />
+	<div class="containers-container">
+		<div class="container">
+			<label for="term">Term</label>
+			<input type="text" id="term" name="term" bind:value={data.term} onkeyup={handleTermKeyUp} />
+		</div>
+		<div class="container">
+			<label for="definition">Definition</label>
+			<input type="text" id="definition" name="definition" bind:value={data.defintion} />
+		</div>
+		<div id="word-type-container" class="container">
+			<label for="word-type">Word Type</label>
+			<select id="word-type" name="word-type" bind:value={data.term_type}>
+				<option value="noun">Noun</option>
+				<option value="verb">Verb</option>
+				<option value="adjective">Adjective</option>
+				<option value="adverb">Adverb</option>
+				<option value="article">Article</option>
+				<option value="pronoun">Pronoun</option>
+			</select>
+		</div>
+		<button class="remove-button" onclick={handle_remove_button}>X</button>
 	</div>
-	<div class="container">
-		<label for="definition">Definition</label>
-		<input type="text" id="definition" name="definition" bind:value={data.defintion} />
-	</div>
-	<div class="container">
-		<label for="word-type">Word Type</label>
-		<select id="word-type" name="word-type" bind:value={data.term_type}>
-			<option value="noun">Noun</option>
-			<option value="verb">Verb</option>
-			<option value="adjective">Adjective</option>
-			<option value="adverb">Adverb</option>
-			<option value="article">Article</option>
-			<option value="pronoun">Pronoun</option>
-		</select>
-	</div>
-	<button class="remove-button" onclick={handle_remove_button}>X</button>
+	<details>
+		<summary>Info</summary>
+		<div>
+			{#if data.term_type == TermType.NOUN}
+				<label for="noun-gender">Gender</label>
+				<select name="noun-gender" id="noun-gender" bind:value={data.gender}>
+					<option value="m">Male</option>
+					<option value="f">Female</option>
+				</select>
+			{:else if data.term_type == TermType.VERB}
+				<div id="conjugations-container">
+					<label for="je-conj">Je</label>
+					<input type="text" name="je-conj" id="je-conj" bind:value={data.conjugations.je} />
+					<label for="tu-conj">Tu</label>
+					<input type="text" name="tu-conj" id="tu-conj" bind:value={data.conjugations.tu} />
+					<label for="il-conj">Il/Elle</label>
+					<input type="text" name="il-conj" id="il-conj" bind:value={data.conjugations.il} />
+					<label for="vous-conj">Vous</label>
+					<input type="text" name="vous-conj" id="vous-conj" bind:value={data.conjugations.vous} />
+					<label for="nous-conj">Nous</label>
+					<input type="text" name="nous-conj" id="nous-conj" bind:value={data.conjugations.nous} />
+					<label for="ils-conj">Ils/Elles</label>
+					<input type="text" name="ils-conj" id="ils-conj" bind:value={data.conjugations.ils} />
+				</div>
+			{/if}
+		</div>
+	</details>
 </div>
 
 <style>
@@ -68,13 +117,24 @@
 	}
 
 	.minerva-card {
-		display: grid;
-		grid-template-columns: 40% 40% 15% 5%;
-		flex-direction: row;
-		justify-content: space-around;
 		margin-bottom: 20px;
 		padding: 15px;
 		border: 2px solid white;
+	}
+
+	div.containers-container {
+		display: grid;
+		grid-template-columns: 40% 40% 15% 5%;
+		margin-bottom: 15px;
+	}
+
+	#word-type-container {
+		display: flex;
+		align-items: center;
+	}
+
+	#word-type-container > label {
+		margin-right: 15px;
 	}
 
 	.container > label {
@@ -111,5 +171,24 @@
 	option {
 		font-size: 12pt;
 		color: black;
+	}
+
+	details > div {
+		padding: 15px;
+	}
+
+	#conjugations-container {
+		display: grid;
+		grid-template-columns: 5% 20%;
+	}
+
+	#conjugations-container > label,
+	#conjugations-container > input {
+		margin-bottom: 10px;
+	}
+
+	#conjugations-container > input {
+		color: black;
+		padding: 0 5px;
 	}
 </style>
