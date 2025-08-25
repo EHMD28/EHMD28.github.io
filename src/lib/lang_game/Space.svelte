@@ -57,7 +57,7 @@
 		let observer = new MutationObserver(() => {
 			if (main_element.childElementCount === 0) {
 				path = null;
-				BoardState[position] = null;
+				BoardState[position - 1] = null;
 			}
 		});
 		observer.observe(main_element, { childList: true });
