@@ -17,7 +17,7 @@
 
 <style>
 	div {
-		font-size: 12pt;
+		font-size: 10pt;
 	}
 
 	.card {
@@ -25,7 +25,7 @@
 		vertical-align: top;
 		border: 2px solid black;
 		height: 2.8in;
-		width: 1.5in;
+		width: 1.2in;
 		text-align: center;
 		padding: 10px;
 		font-family: Arial, Helvetica, sans-serif;
