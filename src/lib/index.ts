@@ -13,14 +13,14 @@ enum ConjugationPronoun {
 	ILS
 }
 
-export function conjugations_to_string(vc: VerbConjugations): string {
+export function conjugations_to_string(conj: VerbConjugations): string {
 	return `{
-        je: ${vc.je},
-        tu: ${vc.tu},
-        il: ${vc.il},
-        vous: ${vc.vous},
-        nous: ${vc.nous},
-        ils: ${vc.ils}
+        je: ${conj.je},
+        tu: ${conj.tu},
+        il: ${conj.il},
+        vous: ${conj.vous},
+        nous: ${conj.nous},
+        ils: ${conj.ils}
     }`;
 }
 

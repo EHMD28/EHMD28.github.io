@@ -21,12 +21,20 @@ export interface VerbConjugations {
 	ils: string;
 }
 
+export interface AdjectiveForms {
+	male: string;
+	female: string;
+	male_plural: string;
+	female_plural: string;
+}
+
 export interface FlashCardData {
 	term: string;
-	term_type: TermTypes;
 	defintion: string;
-	gender: NounGender;
-	conjugations: VerbConjugations;
+	term_type: TermTypes;
+	noun_gender: NounGender | null;
+	verb_conjugations: VerbConjugations | null;
+	adjective_forms: AdjectiveForms | null;
 }
 
 export function new_conjugations(): VerbConjugations {
@@ -43,9 +51,10 @@ export function new_conjugations(): VerbConjugations {
 export function new_flashcard_data(): FlashCardData {
 	return {
 		term: '',
-		term_type: TermTypes.NOUN,
 		defintion: '',
-		gender: NounGender.MALE,
-		conjugations: new_conjugations()
+		term_type: TermTypes.NOUN,
+		noun_gender: null,
+		verb_conjugations: null,
+		adjective_forms: null
 	};
 }

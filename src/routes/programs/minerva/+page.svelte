@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { global_flashcards } from '$lib/data.svelte';
+	import { GlobalFlashcards } from '$lib/data.svelte';
 	import AddCardButton from '$lib/minerva/AddCardButton.svelte';
 	import FlashCard from '$lib/minerva/FlashCard.svelte';
 </script>
@@ -10,7 +10,7 @@
 	goddess of wisdom. You can add French vocabulary alongside the conjugations (for the verbs).
 </p>
 
-{#each global_flashcards as flashcard}
+{#each GlobalFlashcards as flashcard}
 	<FlashCard data={flashcard} />
 {/each}
 <AddCardButton />
