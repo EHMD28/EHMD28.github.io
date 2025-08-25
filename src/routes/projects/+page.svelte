@@ -10,7 +10,9 @@
 </div>
 <article>
 	<section class="project">
-		<h1 id="m-calc"><a href="https://github.com/EHMD28/m-calc_ver.4">M-Calculator Version 4</a></h1>
+		<h1 id="m-calc">
+			<a href="https://github.com/EHMD28/m-calc_ver.4" target="_blank">M-Calculator Version 4</a>
+		</h1>
 		<p>
 			M-Calculator 4 is a fully featured scientific calculator written in pure C, no libraries
 			(except ones I wrote). This is my first non-trivial project I created. If you're wondering why
@@ -22,7 +24,7 @@
 	<hr />
 	<section class="project">
 		<h1 id="kingdom-kards">
-			<a href="https://github.com/EHMD28/kingdom-kards">Kingdom Kards Server</a>
+			<a href="https://github.com/EHMD28/kingdom-kards" target="_blank">Kingdom Kards Server</a>
 		</h1>
 		<p>
 			Kingdom Kards is a card game I invented which can be played with a standard deck of playing
