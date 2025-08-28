@@ -36,6 +36,14 @@ const flash_cards: FlashCardData[] = [
 			male_plural: 'petits',
 			female_plural: 'petites'
 		}
+	},
+	{
+		term: 'rarement',
+		defintion: 'rarely',
+		term_type: TermTypes.ADVERB,
+		noun_gender: null,
+		verb_conjugations: null,
+		adjective_forms: null
 	}
 ];
 

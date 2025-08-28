@@ -2,9 +2,7 @@ export enum TermTypes {
 	NOUN = 'noun',
 	VERB = 'verb',
 	ADJECTIVE = 'adjective',
-	ADVERB = 'adverb',
-	ARTICLE = 'article',
-	PRONOUN = 'pronoun'
+	ADVERB = 'adverb'
 }
 
 export enum NounGender {
