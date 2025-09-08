@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GlobalFlashcards } from '$lib/data.svelte';
+	import { GlobalFlashcards } from '$lib/minerva/data.svelte';
 	import AddCardButton from '$lib/minerva/AddCardButton.svelte';
 	import FlashCard from '$lib/minerva/FlashCard.svelte';
 </script>
@@ -10,6 +10,10 @@
 	goddess of wisdom. You can add French vocabulary alongside the conjugations (for the verbs).
 </p>
 
+<div id="buttons-container">
+	<button type="button">Test</button>
+</div>
+
 {#each GlobalFlashcards as flashcard}
 	<FlashCard data={flashcard} />
 {/each}
@@ -18,5 +22,13 @@
 <style>
 	h1 {
 		margin-bottom: 5vh;
+	}
+
+	button {
+		width: 10vw;
+		font-size: 16pt;
+		padding: 2vh;
+		margin: 2vh;
+		color: black;
 	}
 </style>

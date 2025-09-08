@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { conjugate_verb } from '$lib';
-	import { GlobalFlashcards } from '$lib/data.svelte';
+	import { conjugate_verb } from '$lib/minerva/index';
+	import { GlobalFlashcards, GlobalTags } from '$lib/minerva/data.svelte';
 	import {
 		new_conjugations,
-		new_flashcard_data,
 		NounGender,
 		TermTypes as TermType,
 		type FlashCardData
-	} from '$lib/types';
+	} from '$lib/minerva/types';
+	import AdjectiveDetails from './AdjectiveDetails.svelte';
+	import NounDetails from './NounDetails.svelte';
+	import VerbDetails from './VerbDetails.svelte';
 
 	let { data }: { data: FlashCardData } = $props();
 
@@ -40,10 +42,6 @@
 				break;
 			case TermType.ADVERB:
 				break;
-			case TermType.ARTICLE:
-				break;
-			case TermType.PRONOUN:
-				break;
 		}
 	}
 
@@ -59,10 +57,6 @@
 				case TermType.ADJECTIVE:
 					break;
 				case TermType.ADVERB:
-					break;
-				case TermType.ARTICLE:
-					break;
-				case TermType.PRONOUN:
 					break;
 			}
 		}
@@ -109,72 +103,21 @@
 		<summary>Info</summary>
 		<div>
 			{#if data.term_type == TermType.NOUN}
-				<label for="noun-gender">Gender</label>
-				<select name="noun-gender" id="noun-gender" bind:value={data.noun_gender}>
-					<option value="m">Male</option>
-					<option value="f">Female</option>
-				</select>
+				<NounDetails gender={data.noun_gender} />
 			{:else if data.term_type == TermType.VERB}
-				<div id="conjugations-container">
-					<label for="je-conj">Je</label>
-					<input type="text" name="je-conj" id="je-conj" bind:value={data.verb_conjugations.je} />
-					<label for="tu-conj">Tu</label>
-					<input type="text" name="tu-conj" id="tu-conj" bind:value={data.verb_conjugations.tu} />
-					<label for="il-conj">Il/Elle</label>
-					<input type="text" name="il-conj" id="il-conj" bind:value={data.verb_conjugations.il} />
-					<label for="vous-conj">Vous</label>
-					<input
-						type="text"
-						name="vous-conj"
-						id="vous-conj"
-						bind:value={data.verb_conjugations.vous}
-					/>
-					<label for="nous-conj">Nous</label>
-					<input
-						type="text"
-						name="nous-conj"
-						id="nous-conj"
-						bind:value={data.verb_conjugations.nous}
-					/>
-					<label for="ils-conj">Ils/Elles</label>
-					<input
-						type="text"
-						name="ils-conj"
-						id="ils-conj"
-						bind:value={data.verb_conjugations.ils}
-					/>
-				</div>
+				<VerbDetails conjugations={data.verb_conjugations} />
 			{:else if data.term_type == TermType.ADJECTIVE}
-				<div class="adjective-forms-container">
-					<div>
-						<label for="m-adj">Male:</label>
-						<input type="text" name="m-adj" id="m-adj" bind:value={data.adjective_forms.male} />
-					</div>
-					<div>
-						<label for="mp-adj">Male Plural:</label>
-						<input
-							type="text"
-							name="mp-adj"
-							id="mp-adj"
-							bind:value={data.adjective_forms.male_plural}
-						/>
-					</div>
-					<div>
-						<label for="f-adj">Female:</label>
-						<input type="text" name="f-adj" id="f-adj" bind:value={data.adjective_forms.female} />
-					</div>
-					<div>
-						<label for="fp-adj">Female Plural:</label>
-						<input
-							type="text"
-							name="fp-adj"
-							id="fp-adj"
-							bind:value={data.adjective_forms.female_plural}
-						/>
-					</div>
-				</div>
+				<AdjectiveDetails forms={data.adjective_forms} />
 			{/if}
 		</div>
+		<details>
+			<summary>Tags: {data.tags}</summary>
+			<select multiple name="tags-select" id="tags-select">
+				{#each GlobalTags as tag}
+					<option value={tag}>{tag}</option>
+				{/each}
+			</select>
+		</details>
 	</details>
 </div>
 
@@ -259,23 +202,11 @@
 		padding: 15px;
 	}
 
-	#conjugations-container {
-		display: grid;
-		grid-template-columns: 5% 20%;
+	#tags-select {
+		margin-top: 1vh;
 	}
 
-	#conjugations-container > label,
-	#conjugations-container > input {
-		margin-bottom: 10px;
-	}
-
-	#conjugations-container > input {
-		color: black;
-		padding: 0 5px;
-	}
-
-	.adjective-forms-container {
-		display: grid;
-		grid-template-columns: auto auto auto auto;
+	#tags-select > option {
+		margin: 0 0.25vw;
 	}
 </style>

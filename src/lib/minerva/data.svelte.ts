@@ -1,4 +1,4 @@
-import { new_conjugations, NounGender, TermTypes, type FlashCardData } from './types';
+import { NounGender, TermTypes, type FlashCardData } from './types';
 
 const flash_cards: FlashCardData[] = [
 	{
@@ -14,7 +14,8 @@ const flash_cards: FlashCardData[] = [
 			nous: 'parlons',
 			ils: 'parlent'
 		},
-		adjective_forms: null
+		adjective_forms: null,
+		tags: ['beginner']
 	},
 	{
 		term: 'le chat',
@@ -22,7 +23,8 @@ const flash_cards: FlashCardData[] = [
 		term_type: TermTypes.NOUN,
 		noun_gender: NounGender.MALE,
 		verb_conjugations: null,
-		adjective_forms: null
+		adjective_forms: null,
+		tags: ['beginner', 'animal']
 	},
 	{
 		term: 'petit',
@@ -35,7 +37,8 @@ const flash_cards: FlashCardData[] = [
 			female: 'petite',
 			male_plural: 'petits',
 			female_plural: 'petites'
-		}
+		},
+		tags: ['beginner']
 	},
 	{
 		term: 'rarement',
@@ -43,11 +46,14 @@ const flash_cards: FlashCardData[] = [
 		term_type: TermTypes.ADVERB,
 		noun_gender: null,
 		verb_conjugations: null,
-		adjective_forms: null
+		adjective_forms: null,
+		tags: ['beginner']
 	}
 ];
 
-export let GlobalFlashcards = $state(flash_cards);
+export const GlobalFlashcards = $state(flash_cards);
+
+export const GlobalTags = $state(['common', 'animal', 'profession']);
 
 export function print_global_flashcards() {
 	for (const [i, value] of flash_cards.entries()) {

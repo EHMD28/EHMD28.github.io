@@ -33,6 +33,7 @@ export interface FlashCardData {
 	noun_gender: NounGender | null;
 	verb_conjugations: VerbConjugations | null;
 	adjective_forms: AdjectiveForms | null;
+	tags: string[];
 }
 
 export function new_conjugations(): VerbConjugations {
@@ -53,6 +54,7 @@ export function new_flashcard_data(): FlashCardData {
 		term_type: TermTypes.NOUN,
 		noun_gender: null,
 		verb_conjugations: null,
-		adjective_forms: null
+		adjective_forms: null,
+		tags: []
 	};
 }
