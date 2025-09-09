@@ -11,12 +11,14 @@
 </p>
 
 <div id="buttons-container">
+	<button type="button">Study</button>
 	<button type="button">Test</button>
 </div>
 
 {#each GlobalFlashcards as flashcard}
 	<FlashCard data={flashcard} />
 {/each}
+
 <AddCardButton />
 
 <style>
@@ -24,11 +26,17 @@
 		margin-bottom: 5vh;
 	}
 
-	button {
-		width: 10vw;
+	#buttons-container > button {
+		width: 8vw;
 		font-size: 16pt;
-		padding: 2vh;
 		margin: 2vh;
 		color: black;
+	}
+
+	#buttons-container > button:hover {
+		background: black;
+		color: blue;
+		border: 2px solid blue;
+		cursor: pointer;
 	}
 </style>

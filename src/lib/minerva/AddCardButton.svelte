@@ -13,10 +13,12 @@
 	button.add-card {
 		width: 30vw;
 		height: 50px;
-		margin: 0 35vw;
+		margin: 5vh 35vw;
+		margin-top: 0;
 		padding: 5px;
 
 		background: none;
+		color: white;
 		border: 2px solid white;
 		font-size: 24pt;
 	}

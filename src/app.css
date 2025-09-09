@@ -48,3 +48,9 @@ hr {
 input {
 	color: black;
 }
+
+button, select, input, option {
+	background: white;
+	color: black;
+	padding: 0.5vw;
+}

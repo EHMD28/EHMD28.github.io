@@ -53,7 +53,7 @@ const flash_cards: FlashCardData[] = [
 
 export const GlobalFlashcards = $state(flash_cards);
 
-export const GlobalTags = $state(['common', 'animal', 'profession']);
+export const GlobalTags = $state([...new Set(flash_cards.map((v) => v.tags).flat())]);
 
 export function print_global_flashcards() {
 	for (const [i, value] of flash_cards.entries()) {

@@ -10,8 +10,30 @@
 	import AdjectiveDetails from './AdjectiveDetails.svelte';
 	import NounDetails from './NounDetails.svelte';
 	import VerbDetails from './VerbDetails.svelte';
+	import WordTypeSelector from './WordTypeSelector.svelte';
 
 	let { data }: { data: FlashCardData } = $props();
+
+	let tag_input = $state('');
+
+	function handle_tag_add(e) {
+		if (!GlobalTags.includes(tag_input)) {
+			GlobalTags.push(tag_input);
+		}
+	}
+
+	function handle_tag_remove(e) {
+		let index = GlobalTags.indexOf(tag_input);
+		if (index !== -1) {
+			/* Remove tag from array. */
+			GlobalTags.splice(index, 1);
+			let affected = GlobalFlashcards.filter((v) => v.tags.includes(tag_input));
+			for (let data of affected) {
+				index = data.tags.indexOf(tag_input);
+				data.tags.splice(index, 1);
+			}
+		}
+	}
 
 	function handle_noun_term() {
 		let noun = data.term.toLowerCase().trim();
@@ -27,21 +49,6 @@
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
 			data.verb_conjugations = conjugations;
-		}
-	}
-
-	function on_dropdown_change() {
-		switch (data.term_type) {
-			case TermType.NOUN:
-				if (data.noun_gender === undefined) data.noun_gender = NounGender.MALE;
-				break;
-			case TermType.VERB:
-				if (data.verb_conjugations === undefined) data.verb_conjugations = new_conjugations();
-				break;
-			case TermType.ADJECTIVE:
-				break;
-			case TermType.ADVERB:
-				break;
 		}
 	}
 
@@ -69,6 +76,16 @@
 			GlobalFlashcards.splice(index, 1);
 		}
 	}
+
+	function handle_checkbox_change(ev: Event) {
+		let checkbox = ev.currentTarget as HTMLInputElement;
+		if (checkbox.checked) {
+			data.tags.push(checkbox.id);
+		} else {
+			let index = data.tags.indexOf(checkbox.id);
+			data.tags.splice(index, 1);
+		}
+	}
 </script>
 
 <div class="minerva-card">
@@ -81,22 +98,7 @@
 			<label for="definition">Definition</label>
 			<input type="text" id="definition" name="definition" bind:value={data.defintion} />
 		</div>
-		<div id="word-type-container" class="container">
-			<label for="word-type">Word Type</label>
-			<select
-				id="word-type"
-				name="word-type"
-				bind:value={data.term_type}
-				onchange={on_dropdown_change}
-			>
-				<option value="noun">Noun</option>
-				<option value="verb">Verb</option>
-				<option value="adjective">Adjective</option>
-				<option value="adverb">Adverb</option>
-				<option value="article">Article</option>
-				<option value="pronoun">Pronoun</option>
-			</select>
-		</div>
+		<WordTypeSelector {data} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>
 	</div>
 	<details>
@@ -112,11 +114,22 @@
 		</div>
 		<details>
 			<summary>Tags: {data.tags}</summary>
-			<select multiple name="tags-select" id="tags-select">
+			<div id="tags-select-container">
 				{#each GlobalTags as tag}
-					<option value={tag}>{tag}</option>
+					<input
+						type="checkbox"
+						name={tag}
+						id={tag}
+						checked={data.tags.includes(tag)}
+						onchange={handle_checkbox_change}
+					/>
+					<label for={tag}>{tag}</label>
+					<br />
 				{/each}
-			</select>
+				<input type="text" bind:value={tag_input} />
+				<button type="button" onclick={handle_tag_add}>Add</button>
+				<button type="button" onclick={handle_tag_remove}>Remove</button>
+			</div>
 		</details>
 	</details>
 </div>
@@ -149,19 +162,6 @@
 		margin-bottom: 15px;
 	}
 
-	#word-type-container {
-		display: flex;
-		align-items: center;
-	}
-
-	#word-type-container > label {
-		margin-right: 15px;
-	}
-
-	select#word-type {
-		padding-right: 5px;
-	}
-
 	.container > label {
 		font-size: 14pt;
 	}
@@ -192,12 +192,6 @@
 		cursor: pointer;
 	}
 
-	select,
-	option {
-		font-size: 12pt;
-		color: black;
-	}
-
 	details > div {
 		padding: 15px;
 	}
@@ -206,7 +200,7 @@
 		margin-top: 1vh;
 	}
 
-	#tags-select > option {
-		margin: 0 0.25vw;
+	#tags-select-container > input {
+		margin-bottom: 2vh;
 	}
 </style>

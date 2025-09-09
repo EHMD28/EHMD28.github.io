@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { VerbConjugations } from '$lib/types';
+	import type { VerbConjugations } from '$lib/minerva/types';
 
 	let { conjugations }: { conjugations: VerbConjugations } = $props();
 </script>

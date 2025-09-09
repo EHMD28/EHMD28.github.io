@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { AdjectiveForms } from '$lib/types';
+	import type { AdjectiveForms } from '$lib/minerva/types';
 
 	let { forms }: { forms: AdjectiveForms } = $props();
 </script>

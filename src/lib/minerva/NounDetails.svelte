@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NounGender } from '$lib/types';
+	import type { NounGender } from '$lib/minerva/types';
 
 	let { gender }: { gender: NounGender } = $props();
 </script>
