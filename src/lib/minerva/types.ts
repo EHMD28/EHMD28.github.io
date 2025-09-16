@@ -28,7 +28,7 @@ export interface AdjectiveForms {
 
 export interface FlashCardData {
 	term: string;
-	defintion: string;
+	definition: string;
 	term_type: TermTypes;
 	noun_gender: NounGender | null;
 	verb_conjugations: VerbConjugations | null;
@@ -50,7 +50,7 @@ export function new_conjugations(): VerbConjugations {
 export function new_flashcard_data(): FlashCardData {
 	return {
 		term: '',
-		defintion: '',
+		definition: '',
 		term_type: TermTypes.NOUN,
 		noun_gender: null,
 		verb_conjugations: null,

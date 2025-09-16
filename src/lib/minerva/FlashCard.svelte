@@ -96,7 +96,7 @@
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
-			<input type="text" id="definition" name="definition" bind:value={data.defintion} />
+			<input type="text" id="definition" name="definition" bind:value={data.definition} />
 		</div>
 		<WordTypeSelector {data} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>
