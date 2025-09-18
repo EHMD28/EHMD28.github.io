@@ -1,9 +1,24 @@
 # High Priority
 
+## Editor
+
 - [x] Add tags for each term
 - [ ] Add study mode
 - [ ] Add test mode
 - [ ] Sync with database (most likely going to be Firebase)
+
+## Study/Test
+
+- [ ] Multiple Choice
+- [ ] Translation
+  - [ ] English to French
+  - [ ] French to English
+- [ ] Classification
+  - [ ] Gender
+- [ ] Conjugation
+  - [ ] Un-conjugated to conjugated
+  - [ ] Conjugated to un-conjugated
+- [ ] Male/Female Adjective Forms
 
 # Low Priority
 
