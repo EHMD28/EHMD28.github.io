@@ -1,15 +1,26 @@
 <script lang="ts">
+	import { GlobalFlashcards, GlobalTags } from '../data.svelte';
+
 	interface Props {
 		term: string;
 		answer: string;
-		option_one: string;
-		option_two: string;
-		option_three: string;
-		option_four: string;
 	}
 
 	const { term, answer }: Props = $props();
-	let options = [answer, 'to read', 'to write', 'to run'];
+	// let options = [answer, 'to read', 'to write', 'to run'];
+	let question_options = get_options();
+
+	function get_options(): string[] {
+		let definitions = GlobalFlashcards.filter((v) => v.term !== answer).map((v) => v.definition);
+		for (let i = definitions.length - 1; i > 0; i--) {
+			let random = Math.floor(Math.random() * (i + 1));
+			[definitions[i], definitions[random]] = [definitions[random], definitions[i]];
+		}
+		/* Select first three elements of shuffled array. */
+		let ret = definitions.slice(0, 3);
+		ret.push(answer);
+		return definitions;
+	}
 
 	function select_option_handler(ev: Event) {
 		const button = ev.currentTarget as HTMLButtonElement;
@@ -22,18 +33,15 @@
 <div class="question-container">
 	<div class="question-text">Define {term}</div>
 	<div class="options-container">
-		{#each options as option}
+		{#each question_options as option}
 			<button type="button" onclick={select_option_handler}>{option}</button>
 		{/each}
-		<!-- <button class="opt-one" onclick={select_option_handler}>{}</button>
-		<button class="opt-two" onclick={select_option_handler}>{}</button>
-		<button class="opt-three" onclick={select_option_handler}>{}</button>
-		<button class="opt-four" onclick={select_option_handler}>{}</button> -->
 	</div>
 </div>
 
 <style>
 	.question-container {
+		margin: 5vh 0;
 		padding: 1vh 1vw;
 		border: 2px solid white;
 		font-size: 16pt;

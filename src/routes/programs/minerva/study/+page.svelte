@@ -4,14 +4,8 @@
 
 <h1>Study</h1>
 
-<MultipleChoice
-	term="parler"
-	answer="to speak"
-	option_one="to draw"
-	option_two="to speak"
-	option_three="to walk"
-	option_four="to read"
-/>
+<MultipleChoice term="parler" answer="to speak" />
+<MultipleChoice term="le chat" answer="cat" />
 
 <style>
 	h1 {
