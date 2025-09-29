@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GlobalFlashcards, GlobalTags } from '../data.svelte';
+	import { GlobalFlashcards } from '../data.svelte';
 
 	interface Props {
 		term: string;
@@ -7,7 +7,6 @@
 	}
 
 	const { term, answer }: Props = $props();
-	// let options = [answer, 'to read', 'to write', 'to run'];
 	let question_options = get_options();
 
 	function get_options(): string[] {
@@ -31,7 +30,7 @@
 </script>
 
 <div class="question-container">
-	<div class="question-text">Define {term}</div>
+	<div class="question-text">Define: {term}</div>
 	<div class="options-container">
 		{#each question_options as option}
 			<button type="button" onclick={select_option_handler}>{option}</button>

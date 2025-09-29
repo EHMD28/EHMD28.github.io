@@ -1,11 +1,12 @@
 <script>
-	import MultipleChoice from '$lib/minerva/question_types/MultipleChoice.svelte';
+	import MultipleChoiceQuestion from '$lib/minerva/question_types/MultipleChoiceQuestion.svelte';
+	import WrittenQuestion from '$lib/minerva/question_types/WrittenQuestion.svelte';
 </script>
 
 <h1>Study</h1>
 
-<MultipleChoice term="parler" answer="to speak" />
-<MultipleChoice term="le chat" answer="cat" />
+<MultipleChoiceQuestion term="parler" answer="to speak" />
+<WrittenQuestion term="le chat" answer="cat" />
 
 <style>
 	h1 {
