@@ -24,7 +24,7 @@ export function conjugations_to_string(conj: VerbConjugations): string {
     }`;
 }
 
-function conjugate_verb_with_pronoun(verb: string, pronoun: ConjugationPronoun): string {
+export function conjugate_verb_with_pronoun(verb: string, pronoun: ConjugationPronoun): string {
 	let tense: Tense = 'PRESENT';
 	let composed_tense_options: ComposedTenseOptions = {
 		aux: undefined,

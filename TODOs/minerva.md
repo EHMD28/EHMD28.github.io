@@ -9,16 +9,16 @@
 
 ## Study/Test
 
-- [ ] Multiple Choice
+- [x] Multiple Choice
 - [ ] Translation
   - [ ] English to French
   - [ ] French to English
-- [ ] Classification
-  - [ ] Gender
+- [x] Classification
+  - [x] Gender
 - [ ] Conjugation
   - [ ] Un-conjugated to conjugated
   - [ ] Conjugated to un-conjugated
-- [ ] Male/Female Adjective Forms
+- [ ] **Male/Female Adjective Forms**
 
 # Low Priority
 

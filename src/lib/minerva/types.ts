@@ -58,3 +58,8 @@ export function new_flashcard_data(): FlashCardData {
 		tags: []
 	};
 }
+
+export interface QuestionType {
+	term: string;
+	answer: string;
+}

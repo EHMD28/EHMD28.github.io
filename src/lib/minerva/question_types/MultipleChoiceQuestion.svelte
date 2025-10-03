@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { GlobalFlashcards } from '../data.svelte';
+	import type { QuestionType } from '../types';
 
-	interface Props {
-		term: string;
-		answer: string;
-	}
-
-	const { term, answer }: Props = $props();
+	const { term, answer }: QuestionType = $props();
 	let question_options = get_options();
+	let options_container: HTMLElement;
 
 	function get_options(): string[] {
 		let definitions = GlobalFlashcards.filter((v) => v.term !== answer).map((v) => v.definition);
@@ -24,14 +21,21 @@
 	function select_option_handler(ev: Event) {
 		const button = ev.currentTarget as HTMLButtonElement;
 		const selected = button.innerText;
-		button.style.background = selected === answer ? 'green' : 'red';
-		button.disabled = true;
+		// button.style.background = selected === answer ? 'green' : 'red';
+		if (selected === answer) {
+			button.style.background = 'green';
+			for (let btn of options_container.children) {
+				(btn as HTMLButtonElement).disabled = true;
+			}
+		} else {
+			button.style.background = 'red';
+		}
 	}
 </script>
 
 <div class="question-container">
 	<div class="question-text">Define: {term}</div>
-	<div class="options-container">
+	<div class="options-container" bind:this={options_container}>
 		{#each question_options as option}
 			<button type="button" onclick={select_option_handler}>{option}</button>
 		{/each}
