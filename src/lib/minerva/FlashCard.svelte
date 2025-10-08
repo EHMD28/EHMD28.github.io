@@ -4,7 +4,7 @@
 	import {
 		new_conjugations,
 		NounGender,
-		TermTypes as TermType,
+		PartOfSpeech,
 		type FlashCardData
 	} from '$lib/minerva/types';
 	import AdjectiveDetails from './AdjectiveDetails.svelte';
@@ -55,15 +55,15 @@
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			switch (data.term_type) {
-				case TermType.NOUN:
+				case PartOfSpeech.NOUN:
 					handle_noun_term();
 					break;
-				case TermType.VERB:
+				case PartOfSpeech.VERB:
 					handle_verb_term();
 					break;
-				case TermType.ADJECTIVE:
+				case PartOfSpeech.ADJECTIVE:
 					break;
-				case TermType.ADVERB:
+				case PartOfSpeech.ADVERB:
 					break;
 			}
 		}
@@ -104,11 +104,11 @@
 	<details>
 		<summary>Info</summary>
 		<div>
-			{#if data.term_type == TermType.NOUN}
+			{#if data.term_type == PartOfSpeech.NOUN}
 				<NounDetails gender={data.noun_gender} />
-			{:else if data.term_type == TermType.VERB}
+			{:else if data.term_type == PartOfSpeech.VERB}
 				<VerbDetails conjugations={data.verb_conjugations} />
-			{:else if data.term_type == TermType.ADJECTIVE}
+			{:else if data.term_type == PartOfSpeech.ADJECTIVE}
 				<AdjectiveDetails forms={data.adjective_forms} />
 			{/if}
 		</div>

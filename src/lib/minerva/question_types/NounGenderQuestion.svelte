@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { GlobalFlashcards } from '../data.svelte';
-	import { TermTypes, type QuestionType } from '../types';
+	import { PartOfSpeech, type QuestionType } from '../types';
 
 	let { term, answer }: QuestionType = $props();
 
@@ -10,7 +10,7 @@
 		let button = ev.currentTarget as HTMLButtonElement;
 		let chosen = button.innerHTML;
 		let termCard = GlobalFlashcards.find((v) => v.term === term);
-		if (termCard === undefined || termCard.term_type !== TermTypes.NOUN) return;
+		if (termCard === undefined || termCard.term_type !== PartOfSpeech.NOUN) return;
 		if (chosen[0].toLowerCase() === termCard.noun_gender) {
 			button.style.backgroundColor = 'green';
 		} else {

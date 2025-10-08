@@ -1,19 +1,19 @@
 <script lang="ts">
-	import type { FlashCardData } from './types';
+	import { new_conjugations, NounGender, PartOfSpeech, type FlashCardData } from './types';
 
 	let { data }: { data: FlashCardData } = $props();
 
 	function on_dropdown_change() {
 		switch (data.term_type) {
-			case TermType.NOUN:
+			case PartOfSpeech.NOUN:
 				if (data.noun_gender === undefined) data.noun_gender = NounGender.MALE;
 				break;
-			case TermType.VERB:
+			case PartOfSpeech.VERB:
 				if (data.verb_conjugations === undefined) data.verb_conjugations = new_conjugations();
 				break;
-			case TermType.ADJECTIVE:
+			case PartOfSpeech.ADJECTIVE:
 				break;
-			case TermType.ADVERB:
+			case PartOfSpeech.ADVERB:
 				break;
 		}
 	}

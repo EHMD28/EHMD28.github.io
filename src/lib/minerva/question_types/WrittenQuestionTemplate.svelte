@@ -1,7 +1,13 @@
 <script lang="ts">
 	import type { QuestionType } from '../types';
 
-	const { term, answer }: QuestionType = $props();
+	interface Props {
+		prompt: string;
+		term: string;
+		answer: string;
+	}
+
+	const { prompt, term, answer }: Props = $props();
 	let input_value = $state('');
 	let input_element: HTMLInputElement;
 
@@ -22,7 +28,7 @@
 </script>
 
 <div class="question-container">
-	<div class="question-text">Translate: {term}</div>
+	<div class="question-text">{prompt}: {term}</div>
 	<div class="written-input-container">
 		<input
 			type="text"

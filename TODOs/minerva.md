@@ -22,4 +22,5 @@
 
 # Low Priority
 
-[ ] Handle mapping one term to multiple definitions
+- [ ] Handle mapping one term to multiple definitions
+- [x] Make generic written question type
