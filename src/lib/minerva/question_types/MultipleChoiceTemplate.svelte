@@ -1,8 +1,14 @@
 <script lang="ts">
 	import { GlobalFlashcards } from '../data.svelte';
-	import type { QuestionType } from '../types';
+	import type { Question, QuestionType } from '../types';
 
-	const { term, answer }: QuestionType = $props();
+	interface Props {
+		term: string;
+		answer: string;
+		prompt: string;
+	}
+
+	const { term, answer, prompt }: Props = $props();
 	let question_options = get_options();
 	let options_container: HTMLElement;
 

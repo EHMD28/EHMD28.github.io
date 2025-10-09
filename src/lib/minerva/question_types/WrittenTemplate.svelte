@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { QuestionType } from '../types';
-
 	interface Props {
 		prompt: string;
 		term: string;
@@ -12,7 +10,8 @@
 	let input_element: HTMLInputElement;
 
 	function check_answer() {
-		if (input_value.trim() === answer) {
+		input_value = input_value.trim().toLocaleLowerCase();
+		if (input_value === answer) {
 			input_element.style.border = '2px solid green';
 			input_element.disabled = true;
 		} else {
