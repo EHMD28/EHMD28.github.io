@@ -2,7 +2,7 @@ import type { Tense, Voice, ComposedTenseOptions } from 'french-verbs';
 import * as FrenchVerbs from 'french-verbs';
 import type { VerbsInfo } from 'french-verbs-lefff';
 import Lefff from 'french-verbs-lefff/dist/conjugations.json';
-import type { VerbConjugations } from './types';
+import type { Question, QuestionCategory, VerbConjugations } from './types';
 
 enum ConjugationPronoun {
 	JE = 0,
@@ -13,18 +13,23 @@ enum ConjugationPronoun {
 	ILS
 }
 
-export function conjugations_to_string(vc: VerbConjugations): string {
+export function get_random_pronoun(): ConjugationPronoun {
+	const LAST_VARIANT = ConjugationPronoun.ILS;
+	return Math.floor(Math.random() * LAST_VARIANT);
+}
+
+export function conjugations_to_string(conj: VerbConjugations): string {
 	return `{
-        je: ${vc.je},
-        tu: ${vc.tu},
-        il: ${vc.il},
-        vous: ${vc.vous},
-        nous: ${vc.nous},
-        ils: ${vc.ils}
+        je: ${conj.je},
+        tu: ${conj.tu},
+        il: ${conj.il},
+        vous: ${conj.vous},
+        nous: ${conj.nous},
+        ils: ${conj.ils}
     }`;
 }
 
-function conjugate_verb_with_pronoun(verb: string, pronoun: ConjugationPronoun): string {
+export function conjugate_verb_with_pronoun(verb: string, pronoun: ConjugationPronoun): string {
 	let tense: Tense = 'PRESENT';
 	let composed_tense_options: ComposedTenseOptions = {
 		aux: undefined,

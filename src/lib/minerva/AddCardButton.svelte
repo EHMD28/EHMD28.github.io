@@ -1,9 +1,9 @@
 <script>
-	import { global_flashcards } from '$lib/data.svelte';
-	import { new_flashcard_data } from '$lib/types';
+	import { GlobalFlashcards } from '$lib/minerva/data.svelte';
+	import { new_flashcard_data } from '$lib/minerva/types';
 
 	function on_click() {
-		global_flashcards.push(new_flashcard_data());
+		GlobalFlashcards.push(new_flashcard_data());
 	}
 </script>
 
@@ -13,10 +13,12 @@
 	button.add-card {
 		width: 30vw;
 		height: 50px;
-		margin: 0 35vw;
+		margin: 5vh 35vw;
+		margin-top: 0;
 		padding: 5px;
 
 		background: none;
+		color: white;
 		border: 2px solid white;
 		font-size: 24pt;
 	}

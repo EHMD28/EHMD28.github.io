@@ -1,22 +1,46 @@
 <script lang="ts">
-	import { conjugate_verb } from '$lib';
-	import { global_flashcards } from '$lib/data.svelte';
+	import { conjugate_verb } from '$lib/minerva/index';
+	import { GlobalFlashcards, GlobalTags } from '$lib/minerva/data.svelte';
 	import {
 		new_conjugations,
-		new_flashcard_data,
 		NounGender,
-		TermTypes as TermType,
+		PartOfSpeech,
 		type FlashCardData
-	} from '$lib/types';
+	} from '$lib/minerva/types';
+	import AdjectiveDetails from './AdjectiveDetails.svelte';
+	import NounDetails from './NounDetails.svelte';
+	import VerbDetails from './VerbDetails.svelte';
+	import WordTypeSelector from './WordTypeSelector.svelte';
 
 	let { data }: { data: FlashCardData } = $props();
+
+	let tag_input = $state('');
+
+	function handle_tag_add(e) {
+		if (!GlobalTags.includes(tag_input)) {
+			GlobalTags.push(tag_input);
+		}
+	}
+
+	function handle_tag_remove(e) {
+		let index = GlobalTags.indexOf(tag_input);
+		if (index !== -1) {
+			/* Remove tag from array. */
+			GlobalTags.splice(index, 1);
+			let affected = GlobalFlashcards.filter((v) => v.tags.includes(tag_input));
+			for (let data of affected) {
+				index = data.tags.indexOf(tag_input);
+				data.tags.splice(index, 1);
+			}
+		}
+	}
 
 	function handle_noun_term() {
 		let noun = data.term.toLowerCase().trim();
 		if (noun.startsWith('le')) {
-			data.gender = NounGender.MALE;
+			data.noun_gender = NounGender.MALE;
 		} else if (noun.startsWith('la')) {
-			data.gender = NounGender.FEMALE;
+			data.noun_gender = NounGender.FEMALE;
 		}
 	}
 
@@ -24,55 +48,42 @@
 		let verb = data.term.toLowerCase().trim();
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
-			data.conjugations = conjugations;
-		}
-	}
-
-	function on_dropdown_change() {
-		switch (data.term_type) {
-			case TermType.NOUN:
-				if (data.gender === undefined) data.gender = NounGender.MALE;
-				break;
-			case TermType.VERB:
-				if (data.conjugations === undefined) data.conjugations = new_conjugations();
-				break;
-			case TermType.ADJECTIVE:
-				break;
-			case TermType.ADVERB:
-				break;
-			case TermType.ARTICLE:
-				break;
-			case TermType.PRONOUN:
-				break;
+			data.verb_conjugations = conjugations;
 		}
 	}
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			switch (data.term_type) {
-				case TermType.NOUN:
+				case PartOfSpeech.NOUN:
 					handle_noun_term();
 					break;
-				case TermType.VERB:
+				case PartOfSpeech.VERB:
 					handle_verb_term();
 					break;
-				case TermType.ADJECTIVE:
+				case PartOfSpeech.ADJECTIVE:
 					break;
-				case TermType.ADVERB:
-					break;
-				case TermType.ARTICLE:
-					break;
-				case TermType.PRONOUN:
+				case PartOfSpeech.ADVERB:
 					break;
 			}
 		}
 	}
 
 	function handle_remove_button() {
-		let index = global_flashcards.findIndex((v) => v.term == data.term);
+		let index = GlobalFlashcards.findIndex((v) => v.term == data.term);
 		if (index > -1) {
 			/* Remove element at index from array. */
-			global_flashcards.splice(index, 1);
+			GlobalFlashcards.splice(index, 1);
+		}
+	}
+
+	function handle_checkbox_change(ev: Event) {
+		let checkbox = ev.currentTarget as HTMLInputElement;
+		if (checkbox.checked) {
+			data.tags.push(checkbox.id);
+		} else {
+			let index = data.tags.indexOf(checkbox.id);
+			data.tags.splice(index, 1);
 		}
 	}
 </script>
@@ -85,52 +96,41 @@
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
-			<input type="text" id="definition" name="definition" bind:value={data.defintion} />
+			<input type="text" id="definition" name="definition" bind:value={data.definition} />
 		</div>
-		<div id="word-type-container" class="container">
-			<label for="word-type">Word Type</label>
-			<select
-				id="word-type"
-				name="word-type"
-				bind:value={data.term_type}
-				onchange={on_dropdown_change}
-			>
-				<option value="noun">Noun</option>
-				<option value="verb">Verb</option>
-				<option value="adjective">Adjective</option>
-				<option value="adverb">Adverb</option>
-				<option value="article">Article</option>
-				<option value="pronoun">Pronoun</option>
-			</select>
-		</div>
+		<WordTypeSelector {data} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>
 	</div>
 	<details>
 		<summary>Info</summary>
 		<div>
-			{#if data.term_type == TermType.NOUN}
-				<label for="noun-gender">Gender</label>
-				<select name="noun-gender" id="noun-gender" bind:value={data.gender}>
-					<option value="m">Male</option>
-					<option value="f">Female</option>
-				</select>
-			{:else if data.term_type == TermType.VERB}
-				<div id="conjugations-container">
-					<label for="je-conj">Je</label>
-					<input type="text" name="je-conj" id="je-conj" bind:value={data.conjugations.je} />
-					<label for="tu-conj">Tu</label>
-					<input type="text" name="tu-conj" id="tu-conj" bind:value={data.conjugations.tu} />
-					<label for="il-conj">Il/Elle</label>
-					<input type="text" name="il-conj" id="il-conj" bind:value={data.conjugations.il} />
-					<label for="vous-conj">Vous</label>
-					<input type="text" name="vous-conj" id="vous-conj" bind:value={data.conjugations.vous} />
-					<label for="nous-conj">Nous</label>
-					<input type="text" name="nous-conj" id="nous-conj" bind:value={data.conjugations.nous} />
-					<label for="ils-conj">Ils/Elles</label>
-					<input type="text" name="ils-conj" id="ils-conj" bind:value={data.conjugations.ils} />
-				</div>
+			{#if data.term_type == PartOfSpeech.NOUN}
+				<NounDetails gender={data.noun_gender} />
+			{:else if data.term_type == PartOfSpeech.VERB}
+				<VerbDetails conjugations={data.verb_conjugations} />
+			{:else if data.term_type == PartOfSpeech.ADJECTIVE}
+				<AdjectiveDetails forms={data.adjective_forms} />
 			{/if}
 		</div>
+		<details>
+			<summary>Tags: {data.tags}</summary>
+			<div id="tags-select-container">
+				{#each GlobalTags as tag}
+					<input
+						type="checkbox"
+						name={tag}
+						id={tag}
+						checked={data.tags.includes(tag)}
+						onchange={handle_checkbox_change}
+					/>
+					<label for={tag}>{tag}</label>
+					<br />
+				{/each}
+				<input type="text" bind:value={tag_input} />
+				<button type="button" onclick={handle_tag_add}>Add</button>
+				<button type="button" onclick={handle_tag_remove}>Remove</button>
+			</div>
+		</details>
 	</details>
 </div>
 
@@ -146,6 +146,10 @@
 		box-shadow: inset 0 0 20px 20px #23232329;
 	}
 
+	input {
+		padding: 4px;
+	}
+
 	.minerva-card {
 		margin-bottom: 20px;
 		padding: 15px;
@@ -154,17 +158,8 @@
 
 	div.containers-container {
 		display: grid;
-		grid-template-columns: 40% 40% 15% 5%;
+		grid-template-columns: 40% 40% 16% 4%;
 		margin-bottom: 15px;
-	}
-
-	#word-type-container {
-		display: flex;
-		align-items: center;
-	}
-
-	#word-type-container > label {
-		margin-right: 15px;
 	}
 
 	.container > label {
@@ -176,17 +171,17 @@
 		background: transparent;
 		border-bottom: 2px solid blue;
 		font-size: 14pt;
-		padding: 4px;
 		margin-left: 10px;
 		width: 70%;
 	}
 
 	button.remove-button {
 		width: fit-content;
+		height: fit-content;
 		padding: 5px 10px;
 		border-radius: 20px;
 		color: blue;
-		font-size: 18pt;
+		font-size: 100%;
 		background: white;
 		border: none;
 	}
@@ -197,28 +192,15 @@
 		cursor: pointer;
 	}
 
-	select,
-	option {
-		font-size: 12pt;
-		color: black;
-	}
-
 	details > div {
 		padding: 15px;
 	}
 
-	#conjugations-container {
-		display: grid;
-		grid-template-columns: 5% 20%;
+	#tags-select {
+		margin-top: 1vh;
 	}
 
-	#conjugations-container > label,
-	#conjugations-container > input {
-		margin-bottom: 10px;
-	}
-
-	#conjugations-container > input {
-		color: black;
-		padding: 0 5px;
+	#tags-select-container > input {
+		margin-bottom: 2vh;
 	}
 </style>
