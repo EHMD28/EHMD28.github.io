@@ -41,6 +41,18 @@ export interface AdjectiveForms {
 }
 
 /**
+ * Returns a new `AdjectiveForms` object with all values set to empty strings.
+ */
+export function new_adjective_forms(): AdjectiveForms {
+	return {
+		male: '',
+		female: '',
+		male_plural: '',
+		female_plural: ''
+	};
+}
+
+/**
  * The type used for representing an entire flashcard. The `term_type` property should correspond
  * with which other member of the object is not null. For example, if `term_type` is `NOUN`, then
  * only `noun_gender` should be not `null`. All other sub-values should be `null`.
