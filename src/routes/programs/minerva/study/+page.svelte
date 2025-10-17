@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { get_cards_from_server } from '$lib/minerva/data.svelte';
 	import QuestionComponent from '$lib/minerva/question_types/QuestionComponent.svelte';
 	import { new_question, QuestionType, type FlashCardData } from '$lib/minerva/types';
 	import { onMount } from 'svelte';
@@ -7,10 +6,14 @@
 	let question_one = new_question('le chat', 'cat', QuestionType.WRITTEN_FR_TO_EN);
 	let question_two = new_question('le chat', 'cat', QuestionType.MULTIPLE_CHOICE_FR_TO_EN);
 
+	let { data } = $props();
+
 	onMount(() => {
-		get_cards_from_server()
-			.then((data) => console.log(JSON.stringify(data, null, 2)))
-			.catch((error) => console.trace(`Error: ${error}`));
+		let first = data.result[0];
+		console.log(`${first.term} -> ${first.definition}`);
+		// get_cards_from_server()
+		// 	.then((data) => console.log(JSON.stringify(data, null, 2)))
+		// 	.catch((error) => console.trace(`Error: ${error}`));
 	});
 </script>
 
