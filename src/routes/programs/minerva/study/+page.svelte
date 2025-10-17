@@ -9,8 +9,8 @@
 
 	onMount(() => {
 		get_cards_from_server()
-			.then((data) => alert(JSON.stringify(data)))
-			.catch((error) => alert(`Error: ${error}`));
+			.then((data) => console.log(JSON.stringify(data, null, 2)))
+			.catch((error) => console.trace(`Error: ${error}`));
 	});
 </script>
 

@@ -38,14 +38,16 @@ export async function get_cards_from_server(): Promise<FlashCardData[]> | null {
 function parse_flashcards_csv(text: string): FlashCardData[] {
 	const lines = text.split('\n');
 	/* Extracts the header row from the CSV. */
+	if (lines.length < 2) throw new Error('CSV file too short.');
 	const headers = lines.splice(0, 1)[0].split(',');
-	const cards = lines.map((line) => parse_line(line, headers));
+	const cards = lines.filter((line) => line.length !== 0).map((line) => parse_line(line, headers));
 	return cards;
 }
 
 function parse_line(line: string, headers: string[]): FlashCardData {
 	let ret = new_flashcard_data();
 	let parts = line.split(',');
+	console.log(`reading line: ${line}`);
 	for (let i = 0; i < headers.length; i++) {
 		switch (headers[i]) {
 			case 'term':
