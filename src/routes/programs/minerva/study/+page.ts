@@ -10,8 +10,8 @@ export async function load({ fetch }) {
 		if (!response.ok) throw new Error(`Response Status: ${response.status}`);
 		const content = await response.text();
 		result = parse_flashcards_csv(content);
-	} catch (error) {
-		error = Promise.reject(error);
+	} catch (e) {
+		error = e;
 	}
 	return {
 		result,

@@ -1,26 +1,31 @@
 <script lang="ts">
+	import { get_random_card } from '$lib/minerva/data.svelte.js';
 	import QuestionComponent from '$lib/minerva/question_types/QuestionComponent.svelte';
-	import { new_question, QuestionType, type FlashCardData } from '$lib/minerva/types';
-	import { onMount } from 'svelte';
+	import {
+		generate_random_question,
+		new_question,
+		PartOfSpeech,
+		QuestionType,
+		type Question
+	} from '$lib/minerva/types';
 
 	let question_one = new_question('le chat', 'cat', QuestionType.WRITTEN_FR_TO_EN);
 	let question_two = new_question('le chat', 'cat', QuestionType.MULTIPLE_CHOICE_FR_TO_EN);
 
 	let { data } = $props();
-
-	onMount(() => {
-		let first = data.result[0];
-		console.log(`${first.term} -> ${first.definition}`);
-		// get_cards_from_server()
-		// 	.then((data) => console.log(JSON.stringify(data, null, 2)))
-		// 	.catch((error) => console.trace(`Error: ${error}`));
-	});
+	/* `result` is an array of `FlashCardData`, and `error` is only assigned to if something goes wrong.
+  Otherwise, it's undefined. */
+	let { result, error } = data;
+	const random_card = result[Math.floor(Math.random() * result.length)];
+	const question_zero = generate_random_question(random_card);
 </script>
 
 <h1>Study (Étudier)</h1>
 
-<QuestionComponent data={question_one} />
-<QuestionComponent data={question_two} />
+<QuestionComponent data={question_zero} />
+
+<!-- <QuestionComponent data={question_one} />
+<QuestionComponent data={question_two} /> -->
 
 <style>
 	h1 {

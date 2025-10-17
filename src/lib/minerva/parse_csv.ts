@@ -21,7 +21,7 @@ export function parse_flashcards_csv(text: string): FlashCardData[] {
 function parse_line(line: string, headers: string[]): FlashCardData {
 	let ret = new_flashcard_data();
 	let parts = line.split(',');
-	console.log(`reading line: ${line}`);
+	console.debug(`reading line: ${line}`);
 	for (let i = 0; i < headers.length; i++) {
 		switch (headers[i]) {
 			case 'term':

@@ -1,3 +1,10 @@
+import {
+	ConjugationPronoun,
+	get_random_pronoun_enum,
+	get_random_pronoun_str,
+	pronoun_enum_to_str
+} from '.';
+
 /**
  * The type used for representing which part of speech the term belongs to. At runtime, these types
  * are stored as lowercase strings.
@@ -29,6 +36,54 @@ export interface VerbConjugations {
 	nous: string;
 	ils: string;
 }
+
+export function get_conjugation_from_verb_conjugations(
+	vc: VerbConjugations,
+	pronoun: ConjugationPronoun
+) {
+	switch (pronoun) {
+		case ConjugationPronoun.JE:
+			return vc.je;
+		case ConjugationPronoun.TU:
+			return vc.tu;
+		case ConjugationPronoun.IL:
+			return vc.il;
+		case ConjugationPronoun.NOUS:
+			return vc.nous;
+		case ConjugationPronoun.VOUS:
+			return vc.vous;
+		case ConjugationPronoun.ILS:
+			return vc.ils;
+	}
+}
+
+// export function get_conjugation_from_verb_conjugations(
+// 	vc: VerbConjugations,
+// 	pronoun: string
+// ): string {
+// 	/*
+//         Technically, the 'il', 'elle', and 'il/elle' aren't all necessary, but I want
+//         to try and future-proof this function.
+//     */
+// 	switch (pronoun) {
+// 		case 'je':
+// 			return vc.je;
+// 		case 'tu':
+// 			return vc.tu;
+// 		case 'il':
+// 		case 'elle':
+// 		case 'il/elle':
+// 			return vc.il;
+// 		case 'vous':
+// 			return vc.vous;
+// 		case 'nous':
+// 			return vc.nous;
+// 		case 'ils':
+// 		case 'elles':
+// 		case 'ils/elles':
+// 			return vc.ils;
+// 	}
+// }
 
 /**
  * The type used for representing the four (m, f, mp, fp) forms of an adjective.
@@ -149,41 +204,35 @@ function get_rand_question_format_type(
 	category: QuestionCategory | null = null,
 	part_of_speech: PartOfSpeech | null = null
 ): QuestionType {
-	let options: QuestionType[];
-	if (category === null) {
-		options = [
-			QuestionType.MULTIPLE_CHOICE_FR_TO_EN,
-			QuestionType.MULTIPLE_CHOICE_EN_TO_FR,
-			QuestionType.WRITTEN_EN_TO_FR,
-			QuestionType.WRITTEN_FR_TO_EN,
-			QuestionType.NOUN_GENDER_CLASSIFICATION,
-			QuestionType.UNCONJUGATED_TO_CONJUGATED,
-			QuestionType.CONJUGATED_TO_UNCONJUGATED,
-			QuestionType.ADJECTIVE_N_TO_M,
-			QuestionType.ADJECTIVE_N_TO_F,
-			QuestionType.ADJECTIVE_N_TO_MP,
-			QuestionType.ADJECTIVE_N_TO_FP
-		];
-	} else if (category === QuestionCategory.MULTIPLE_CHOICE) {
-		options = [QuestionType.MULTIPLE_CHOICE_FR_TO_EN, QuestionType.MULTIPLE_CHOICE_EN_TO_FR];
+	let options: QuestionType[] = [];
+	if (category === QuestionCategory.MULTIPLE_CHOICE) {
+		options.push(QuestionType.MULTIPLE_CHOICE_FR_TO_EN, QuestionType.MULTIPLE_CHOICE_EN_TO_FR);
+		if (part_of_speech === PartOfSpeech.NOUN) {
+			options.push(QuestionType.NOUN_GENDER_CLASSIFICATION);
+		}
 	} else if (category === QuestionCategory.WRITTEN) {
-		options = [
-			QuestionType.WRITTEN_EN_TO_FR,
-			QuestionType.WRITTEN_FR_TO_EN,
-			QuestionType.NOUN_GENDER_CLASSIFICATION,
-			QuestionType.UNCONJUGATED_TO_CONJUGATED,
-			QuestionType.CONJUGATED_TO_UNCONJUGATED,
-			QuestionType.ADJECTIVE_N_TO_M,
-			QuestionType.ADJECTIVE_N_TO_F,
-			QuestionType.ADJECTIVE_N_TO_MP,
-			QuestionType.ADJECTIVE_N_TO_FP
-		];
+		options.push(QuestionType.WRITTEN_EN_TO_FR, QuestionType.WRITTEN_FR_TO_EN);
+		if (part_of_speech === PartOfSpeech.VERB) {
+			options.push(
+				QuestionType.UNCONJUGATED_TO_CONJUGATED,
+				QuestionType.CONJUGATED_TO_UNCONJUGATED
+			);
+		} else if (part_of_speech === PartOfSpeech.ADJECTIVE) {
+			options.push(
+				QuestionType.ADJECTIVE_N_TO_M,
+				QuestionType.ADJECTIVE_N_TO_F,
+				QuestionType.ADJECTIVE_N_TO_MP,
+				QuestionType.ADJECTIVE_N_TO_FP
+			);
+		}
+	} else {
+		throw new Error('Invalid category');
 	}
 	let index = Math.floor(Math.random() * options.length);
 	return options[index];
 }
 
-function get_prompt_from_type(question_type: QuestionType) {
+function get_prompt_from_type(question_type: QuestionType, pronoun: string | null) {
 	switch (question_type) {
 		case QuestionType.MULTIPLE_CHOICE_FR_TO_EN:
 		case QuestionType.MULTIPLE_CHOICE_EN_TO_FR:
@@ -193,7 +242,7 @@ function get_prompt_from_type(question_type: QuestionType) {
 		case QuestionType.NOUN_GENDER_CLASSIFICATION:
 			return 'What is the gender of';
 		case QuestionType.UNCONJUGATED_TO_CONJUGATED:
-			return 'Conjugate';
+			return `Conjugate with ${pronoun}`;
 		case QuestionType.CONJUGATED_TO_UNCONJUGATED:
 			return 'What is the unconjugated form of';
 		case QuestionType.ADJECTIVE_N_TO_M:
@@ -204,6 +253,52 @@ function get_prompt_from_type(question_type: QuestionType) {
 			return 'What is the plural male agreement form for';
 		case QuestionType.ADJECTIVE_N_TO_FP:
 			return 'What is the plural female agreement form for';
+	}
+}
+
+interface TermAndAnswer {
+	term: string;
+	answer: string;
+}
+
+/**
+ * Given the infomration about a term, returns the apropriate answer as an object containing the term
+ * and the answer.
+ */
+function get_answer(
+	card: FlashCardData,
+	question_type: QuestionType,
+	pronoun: ConjugationPronoun | null
+): TermAndAnswer {
+	switch (question_type) {
+		case QuestionType.MULTIPLE_CHOICE_FR_TO_EN:
+		case QuestionType.WRITTEN_FR_TO_EN:
+			return { term: card.term, answer: card.definition };
+		case QuestionType.MULTIPLE_CHOICE_EN_TO_FR:
+		case QuestionType.WRITTEN_EN_TO_FR:
+			return { term: card.definition, answer: card.term };
+		case QuestionType.NOUN_GENDER_CLASSIFICATION:
+			return { term: card.term, answer: card.noun_gender };
+		case QuestionType.UNCONJUGATED_TO_CONJUGATED:
+			return {
+				term: card.term,
+				answer: get_conjugation_from_verb_conjugations(card.verb_conjugations, pronoun)
+			};
+		case QuestionType.CONJUGATED_TO_UNCONJUGATED:
+			return {
+				term: get_conjugation_from_verb_conjugations(card.verb_conjugations, pronoun),
+				answer: card.term
+			};
+		case QuestionType.ADJECTIVE_N_TO_M:
+			return { term: card.term, answer: card.adjective_forms.male };
+		case QuestionType.ADJECTIVE_N_TO_F:
+			return { term: card.term, answer: card.adjective_forms.female };
+		case QuestionType.ADJECTIVE_N_TO_MP:
+			return { term: card.term, answer: card.adjective_forms.male_plural };
+		case QuestionType.ADJECTIVE_N_TO_FP:
+			return { term: card.term, answer: card.adjective_forms.female_plural };
+		default:
+			return { term: '', answer: '' };
 	}
 }
 
@@ -221,17 +316,16 @@ export interface Question {
 /**
  * @returns A random question format which can be either a written question or a multiple-choice question.
  */
-export function generate_random_question(
-	term: string,
-	answer: string,
-	part_of_speech: PartOfSpeech
-): Question {
+export function generate_random_question(card: FlashCardData): Question {
 	const category = get_rand_question_category();
-	const question_type = get_rand_question_format_type(category, part_of_speech);
+	const question_type = get_rand_question_format_type(category, card.term_type);
+	const pronoun =
+		question_type === QuestionType.CONJUGATED_TO_UNCONJUGATED ? get_random_pronoun_enum() : null;
+	let { term, answer } = get_answer(card, question_type, pronoun);
 	return {
 		term,
 		answer,
-		prompt: get_prompt_from_type(question_type),
+		prompt: get_prompt_from_type(question_type, pronoun_enum_to_str(pronoun)),
 		category,
 		question_type
 	};
@@ -247,11 +341,13 @@ export function new_question(term: string, answer: string, question_type: Questi
 	].includes(question_type)
 		? QuestionCategory.MULTIPLE_CHOICE
 		: QuestionCategory.WRITTEN;
+	const pronoun =
+		question_type === QuestionType.CONJUGATED_TO_UNCONJUGATED ? get_random_pronoun_str() : null;
 	return {
 		category,
 		question_type,
 		term,
 		answer,
-		prompt: get_prompt_from_type(question_type)
+		prompt: get_prompt_from_type(question_type, pronoun)
 	};
 }
