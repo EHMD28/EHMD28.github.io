@@ -3,8 +3,7 @@
 ## Editor
 
 - [x] Add tags for each term
-- [ ] Add study mode
-- [ ] Add test mode
+- [ ] Allow multiple genders for the same noun
 - [ ] Sync with database (most likely going to be Firebase)
 
 ## Study/Test

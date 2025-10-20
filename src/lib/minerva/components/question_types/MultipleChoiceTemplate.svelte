@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { GlobalFlashcards } from '../data.svelte';
-	import type { Question, QuestionType } from '../types';
+	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
 
 	interface Props {
 		term: string;

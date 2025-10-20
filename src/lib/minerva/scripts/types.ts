@@ -115,6 +115,7 @@ export function new_adjective_forms(): AdjectiveForms {
 export interface FlashCardData {
 	term: string;
 	definition: string;
+	// TODO: Change `term_type` to `part_of_speech`.
 	term_type: PartOfSpeech;
 	noun_gender: NounGender | null;
 	verb_conjugations: VerbConjugations | null;
@@ -141,16 +142,20 @@ export function new_conjugations(): VerbConjugations {
  * @returns New `FlashCardData` object with every term set the default (empty string,
  * null, or empty array). For `FlashCardData.term_type`, the default is `TermType.NOUN`.
  */
-export function new_flashcard_data(): FlashCardData {
-	return {
-		term: '',
-		definition: '',
-		term_type: PartOfSpeech.NOUN,
-		noun_gender: null,
-		verb_conjugations: null,
-		adjective_forms: null,
-		tags: []
-	};
+export function new_flashcard_data(data: FlashCardData = null): FlashCardData {
+	if (data === null) {
+		return {
+			term: '',
+			definition: '',
+			term_type: PartOfSpeech.NOUN,
+			noun_gender: null,
+			verb_conjugations: null,
+			adjective_forms: null,
+			tags: []
+		};
+	} else {
+		return data;
+	}
 }
 
 /**

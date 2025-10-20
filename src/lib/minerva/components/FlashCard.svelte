@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { conjugate_verb } from '$lib/minerva/index';
-	import { GlobalFlashcards, GlobalTags } from '$lib/minerva/data.svelte';
+	import { conjugate_verb } from '$lib/minerva/scripts/index';
 	import {
 		new_conjugations,
 		NounGender,
 		PartOfSpeech,
 		type FlashCardData
-	} from '$lib/minerva/types';
+	} from '$lib/minerva/scripts/types';
+	import { GlobalFlashcards, GlobalTags } from '../scripts/data.svelte';
 	import AdjectiveDetails from './AdjectiveDetails.svelte';
 	import NounDetails from './NounDetails.svelte';
 	import VerbDetails from './VerbDetails.svelte';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { new_conjugations, NounGender, PartOfSpeech, type FlashCardData } from './types';
+	import { type FlashCardData, PartOfSpeech, NounGender, new_conjugations } from '../scripts/types';
 
 	let { data }: { data: FlashCardData } = $props();
 

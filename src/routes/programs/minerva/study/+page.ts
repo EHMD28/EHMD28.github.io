@@ -1,5 +1,5 @@
-import { parse_flashcards_csv } from '$lib/minerva/parse_csv';
-import type { FlashCardData } from '$lib/minerva/types.js';
+import { parse_flashcards_csv } from '$lib/minerva/scripts/parse_csv';
+import type { FlashCardData } from '$lib/minerva/scripts/types.js';
 
 export async function load({ fetch }) {
 	const URL = '/minerva/flashcards.csv';
