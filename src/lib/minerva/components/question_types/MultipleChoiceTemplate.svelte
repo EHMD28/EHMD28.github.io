@@ -12,7 +12,7 @@
 	let options_container: HTMLElement;
 
 	function get_options(): string[] {
-		let definitions = GlobalFlashcards.filter((v) => v.term !== answer).map((v) => v.definition);
+		let definitions = GlobalFlashcards.filter((v) => v.fr !== answer).map((v) => v.en);
 		for (let i = definitions.length - 1; i > 0; i--) {
 			let random = Math.floor(Math.random() * (i + 1));
 			[definitions[i], definitions[random]] = [definitions[random], definitions[i]];

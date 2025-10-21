@@ -36,7 +36,7 @@
 	}
 
 	function handle_noun_term() {
-		let noun = data.term.toLowerCase().trim();
+		let noun = data.fr.toLowerCase().trim();
 		if (noun.startsWith('le')) {
 			data.noun_gender = NounGender.MALE;
 		} else if (noun.startsWith('la')) {
@@ -45,7 +45,7 @@
 	}
 
 	function handle_verb_term() {
-		let verb = data.term.toLowerCase().trim();
+		let verb = data.fr.toLowerCase().trim();
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
 			data.verb_conjugations = conjugations;
@@ -70,7 +70,7 @@
 	}
 
 	function handle_remove_button() {
-		let index = GlobalFlashcards.findIndex((v) => v.term == data.term);
+		let index = GlobalFlashcards.findIndex((v) => v.fr == data.fr);
 		if (index > -1) {
 			/* Remove element at index from array. */
 			GlobalFlashcards.splice(index, 1);
@@ -92,11 +92,11 @@
 	<div class="containers-container">
 		<div class="container">
 			<label for="term">Term</label>
-			<input type="text" id="term" name="term" bind:value={data.term} onkeyup={handleTermKeyUp} />
+			<input type="text" id="term" name="term" bind:value={data.en} onkeyup={handleTermKeyUp} />
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
-			<input type="text" id="definition" name="definition" bind:value={data.definition} />
+			<input type="text" id="definition" name="definition" bind:value={data.fr} />
 		</div>
 		<WordTypeSelector {data} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>

@@ -1,8 +1,8 @@
 [
 	{
-		"term": "parler",
-		"definition": "to speak",
-		"term_type": "verb",
+		"fr": "parler",
+		"en": "to speak",
+		"part_of_speech": "verb",
 		"noun_gender": null,
 		"verb_conjugations": {
 			"je": "parle",
@@ -16,18 +16,18 @@
 		"tags": ["beginner"]
 	},
 	{
-		"term": "le chat",
-		"definition": "cat",
-		"term_type": "noun",
+		"fr": "le chat",
+		"en": "cat",
+		"part_of_speech": "noun",
 		"noun_gender": "m",
 		"verb_conjugations": null,
 		"adjective_forms": null,
 		"tags": ["beginner", "animal"]
 	},
 	{
-		"term": "petit",
-		"definition": "small",
-		"term_type": "adjective",
+		"fr": "petit",
+		"en": "small",
+		"part_of_speech": "adjective",
 		"noun_gender": null,
 		"verb_conjugations": null,
 		"adjective_forms": {
@@ -39,9 +39,9 @@
 		"tags": ["beginner"]
 	},
 	{
-		"term": "rarement",
-		"definition": "rarely",
-		"term_type": "adverb",
+		"fr": "rarement",
+		"en": "rarely",
+		"part_of_speech": "adverb",
 		"noun_gender": null,
 		"verb_conjugations": null,
 		"adjective_forms": null,

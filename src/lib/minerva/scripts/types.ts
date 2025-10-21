@@ -113,8 +113,8 @@ export function new_adjective_forms(): AdjectiveForms {
  * only `noun_gender` should be not `null`. All other sub-values should be `null`.
  */
 export interface FlashCardData {
-	term: string;
-	definition: string;
+	fr: string;
+	en: string;
 	// TODO: Change `term_type` to `part_of_speech`.
 	part_of_speech: PartOfSpeech;
 	noun_gender: NounGender | null;
@@ -145,8 +145,8 @@ export function new_conjugations(): VerbConjugations {
 export function new_flashcard_data(data: FlashCardData = null): FlashCardData {
 	if (data === null) {
 		return {
-			term: '',
-			definition: '',
+			fr: '',
+			en: '',
 			part_of_speech: PartOfSpeech.NOUN,
 			noun_gender: null,
 			verb_conjugations: null,
@@ -278,30 +278,30 @@ function get_answer(
 	switch (question_type) {
 		case QuestionType.MULTIPLE_CHOICE_FR_TO_EN:
 		case QuestionType.WRITTEN_FR_TO_EN:
-			return { term: card.term, answer: card.definition };
+			return { term: card.fr, answer: card.en };
 		case QuestionType.MULTIPLE_CHOICE_EN_TO_FR:
 		case QuestionType.WRITTEN_EN_TO_FR:
-			return { term: card.definition, answer: card.term };
+			return { term: card.en, answer: card.fr };
 		case QuestionType.NOUN_GENDER_CLASSIFICATION:
-			return { term: card.term, answer: card.noun_gender };
+			return { term: card.fr, answer: card.noun_gender };
 		case QuestionType.UNCONJUGATED_TO_CONJUGATED:
 			return {
-				term: card.term,
+				term: card.fr,
 				answer: get_conjugation_from_verb_conjugations(card.verb_conjugations, pronoun)
 			};
 		case QuestionType.CONJUGATED_TO_UNCONJUGATED:
 			return {
 				term: get_conjugation_from_verb_conjugations(card.verb_conjugations, pronoun),
-				answer: card.term
+				answer: card.fr
 			};
 		case QuestionType.ADJECTIVE_N_TO_M:
-			return { term: card.term, answer: card.adjective_forms.male };
+			return { term: card.fr, answer: card.adjective_forms.male };
 		case QuestionType.ADJECTIVE_N_TO_F:
-			return { term: card.term, answer: card.adjective_forms.female };
+			return { term: card.fr, answer: card.adjective_forms.female };
 		case QuestionType.ADJECTIVE_N_TO_MP:
-			return { term: card.term, answer: card.adjective_forms.male_plural };
+			return { term: card.fr, answer: card.adjective_forms.male_plural };
 		case QuestionType.ADJECTIVE_N_TO_FP:
-			return { term: card.term, answer: card.adjective_forms.female_plural };
+			return { term: card.fr, answer: card.adjective_forms.female_plural };
 		default:
 			return { term: '', answer: '' };
 	}

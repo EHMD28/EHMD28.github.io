@@ -25,10 +25,10 @@ function parse_line(line: string, headers: string[]): FlashCardData {
 	for (let i = 0; i < headers.length; i++) {
 		switch (headers[i]) {
 			case 'term':
-				ret.term = parts[i];
+				ret.fr = parts[i];
 				break;
 			case 'definition':
-				ret.definition = parts[i];
+				ret.en = parts[i];
 				break;
 			case 'term_type':
 				ret.part_of_speech = parts[i] as PartOfSpeech;

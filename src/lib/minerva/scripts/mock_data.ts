@@ -8,8 +8,8 @@ import {
 } from './types';
 
 export const MOCK_NOUN_CARD: FlashCardData = {
-	term: 'le chat',
-	definition: 'cat',
+	fr: 'le chat',
+	en: 'cat',
 	part_of_speech: 'noun' as PartOfSpeech,
 	noun_gender: 'm' as NounGender,
 	verb_conjugations: null,
@@ -20,14 +20,14 @@ export const MOCK_NOUN_CARD: FlashCardData = {
 export const MOCK_NOUN_WRITTEN_QUESTION: Question = {
 	category: QuestionCategory.WRITTEN,
 	question_type: QuestionType.WRITTEN_FR_TO_EN,
-	term: MOCK_NOUN_CARD.term,
-	answer: MOCK_NOUN_CARD.definition,
+	term: MOCK_NOUN_CARD.fr,
+	answer: MOCK_NOUN_CARD.en,
 	prompt: 'Translate'
 };
 
 export const MOCK_VERB_CARD: FlashCardData = {
-	term: 'parler',
-	definition: 'to speak',
+	fr: 'parler',
+	en: 'to speak',
 	part_of_speech: 'verb' as PartOfSpeech,
 	noun_gender: null,
 	verb_conjugations: {
@@ -45,14 +45,14 @@ export const MOCK_VERB_CARD: FlashCardData = {
 export const MOCK_VERB_WRITTEN_QUESTION: Question = {
 	category: QuestionCategory.WRITTEN,
 	question_type: QuestionType.WRITTEN_EN_TO_FR,
-	term: MOCK_VERB_CARD.definition,
-	answer: MOCK_VERB_CARD.term,
+	term: MOCK_VERB_CARD.en,
+	answer: MOCK_VERB_CARD.fr,
 	prompt: 'Translate'
 };
 
 export const MOCK_ADJECTIVE_CARD: FlashCardData = {
-	term: 'petit',
-	definition: 'small',
+	fr: 'petit',
+	en: 'small',
 	part_of_speech: 'adjective' as PartOfSpeech,
 	noun_gender: null,
 	verb_conjugations: null,
@@ -68,14 +68,14 @@ export const MOCK_ADJECTIVE_CARD: FlashCardData = {
 export const MOCK_ADJECTIVE_WRITTEN_QUESTION: Question = {
 	category: QuestionCategory.WRITTEN,
 	question_type: QuestionType.WRITTEN_EN_TO_FR,
-	term: MOCK_ADJECTIVE_CARD.definition,
-	answer: MOCK_ADJECTIVE_CARD.term,
+	term: MOCK_ADJECTIVE_CARD.en,
+	answer: MOCK_ADJECTIVE_CARD.fr,
 	prompt: 'Translate'
 };
 
 export const mock_adverb_card: FlashCardData = {
-	term: 'rarement',
-	definition: 'rarely',
+	fr: 'rarement',
+	en: 'rarely',
 	part_of_speech: 'adverb' as PartOfSpeech,
 	noun_gender: null,
 	verb_conjugations: null,
