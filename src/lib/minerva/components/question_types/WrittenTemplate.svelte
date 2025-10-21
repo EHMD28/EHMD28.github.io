@@ -24,7 +24,7 @@
 	 * from English to French (i.e. conjugations or adjective forms).
 	 */
 	function get_possible_answers(): string[] {
-		switch (card.term_type) {
+		switch (card.part_of_speech) {
 			case PartOfSpeech.NOUN:
 				// TODO: Update to include male and female form (if applicable).
 				return [answer];
@@ -51,7 +51,7 @@
 			// `answer` is the only .
 			possible_answers = [answer];
 		}
-		if (possible_answers.includes(answer)) {
+		if (possible_answers.includes(input_value)) {
 			input_element.style.border = '2px solid green';
 			input_element.disabled = true;
 		} else {

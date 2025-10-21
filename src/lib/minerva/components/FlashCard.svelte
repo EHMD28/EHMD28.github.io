@@ -54,7 +54,7 @@
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			switch (data.term_type) {
+			switch (data.part_of_speech) {
 				case PartOfSpeech.NOUN:
 					handle_noun_term();
 					break;
@@ -104,11 +104,11 @@
 	<details>
 		<summary>Info</summary>
 		<div>
-			{#if data.term_type == PartOfSpeech.NOUN}
+			{#if data.part_of_speech == PartOfSpeech.NOUN}
 				<NounDetails gender={data.noun_gender} />
-			{:else if data.term_type == PartOfSpeech.VERB}
+			{:else if data.part_of_speech == PartOfSpeech.VERB}
 				<VerbDetails conjugations={data.verb_conjugations} />
-			{:else if data.term_type == PartOfSpeech.ADJECTIVE}
+			{:else if data.part_of_speech == PartOfSpeech.ADJECTIVE}
 				<AdjectiveDetails forms={data.adjective_forms} />
 			{/if}
 		</div>

@@ -116,7 +116,7 @@ export interface FlashCardData {
 	term: string;
 	definition: string;
 	// TODO: Change `term_type` to `part_of_speech`.
-	term_type: PartOfSpeech;
+	part_of_speech: PartOfSpeech;
 	noun_gender: NounGender | null;
 	verb_conjugations: VerbConjugations | null;
 	adjective_forms: AdjectiveForms | null;
@@ -147,7 +147,7 @@ export function new_flashcard_data(data: FlashCardData = null): FlashCardData {
 		return {
 			term: '',
 			definition: '',
-			term_type: PartOfSpeech.NOUN,
+			part_of_speech: PartOfSpeech.NOUN,
 			noun_gender: null,
 			verb_conjugations: null,
 			adjective_forms: null,
@@ -323,7 +323,7 @@ export interface Question {
  */
 export function generate_random_question(card: FlashCardData): Question {
 	const category = get_rand_question_category();
-	const question_type = get_rand_question_format_type(category, card.term_type);
+	const question_type = get_rand_question_format_type(category, card.part_of_speech);
 	const pronoun =
 		question_type === QuestionType.CONJUGATED_TO_UNCONJUGATED ? get_random_pronoun_enum() : null;
 	let { term, answer } = get_answer(card, question_type, pronoun);

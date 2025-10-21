@@ -1,5 +1,5 @@
 <script>
-	import { GlobalFlashcards } from '$lib/minerva/scripts/data.sveltea.svelte';
+	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
 	import { new_flashcard_data } from '$lib/minerva/scripts/types';
 
 	function on_click() {

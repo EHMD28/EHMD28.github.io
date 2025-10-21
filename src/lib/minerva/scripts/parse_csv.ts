@@ -31,7 +31,7 @@ function parse_line(line: string, headers: string[]): FlashCardData {
 				ret.definition = parts[i];
 				break;
 			case 'term_type':
-				ret.term_type = parts[i] as PartOfSpeech;
+				ret.part_of_speech = parts[i] as PartOfSpeech;
 				break;
 			case 'noun_gender':
 				ret.noun_gender = parts[i] as NounGender;

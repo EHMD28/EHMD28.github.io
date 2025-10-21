@@ -4,7 +4,7 @@
 	let { data }: { data: FlashCardData } = $props();
 
 	function on_dropdown_change() {
-		switch (data.term_type) {
+		switch (data.part_of_speech) {
 			case PartOfSpeech.NOUN:
 				if (data.noun_gender === undefined) data.noun_gender = NounGender.MALE;
 				break;
@@ -21,7 +21,12 @@
 
 <div id="word-type-container" class="container">
 	<label for="word-type">Word Type</label>
-	<select id="word-type" name="word-type" bind:value={data.term_type} onchange={on_dropdown_change}>
+	<select
+		id="word-type"
+		name="word-type"
+		bind:value={data.part_of_speech}
+		onchange={on_dropdown_change}
+	>
 		<option value="noun">Noun</option>
 		<option value="verb">Verb</option>
 		<option value="adjective">Adjective</option>
