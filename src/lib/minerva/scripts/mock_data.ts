@@ -17,11 +17,19 @@ export const MOCK_NOUN_CARD: FlashCardData = {
 	tags: ['beginner', 'animal']
 };
 
-export const MOCK_NOUN_WRITTEN_QUESTION: Question = {
+export const MOCK_NOUN_WRITTEN_FR_TO_EN_QUESTION: Question = {
 	category: QuestionCategory.WRITTEN,
 	question_type: QuestionType.WRITTEN_FR_TO_EN,
 	term: MOCK_NOUN_CARD.fr,
 	answer: MOCK_NOUN_CARD.en,
+	prompt: 'Translate'
+};
+
+export const MOCK_NOUN_WRITTEN_EN_TO_FR_QUESTION: Question = {
+	category: QuestionCategory.WRITTEN,
+	question_type: QuestionType.WRITTEN_EN_TO_FR,
+	term: MOCK_NOUN_CARD.en,
+	answer: MOCK_NOUN_CARD.fr,
 	prompt: 'Translate'
 };
 

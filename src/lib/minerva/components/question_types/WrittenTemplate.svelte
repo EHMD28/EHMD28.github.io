@@ -41,15 +41,26 @@
 		}
 	}
 
+	function get_noun_without_article(noun: string): string | null {
+		const articles = ['le', 'la', 'les'];
+		const word_separator = ' ';
+		const words = noun.split(word_separator);
+		// If the first word of the noun is an article.
+		if (articles.includes(words[0])) {
+			// Return a string of every other word except the first one.
+			return words.slice(1).join(word_separator).trim();
+		} else {
+			return null;
+		}
+	}
+
 	function check_answer() {
 		input_value = input_value.trim().toLocaleLowerCase();
-		let possible_answers: string[];
+		const possible_answers: string[] = [answer];
+		const article_less_noun = get_noun_without_article(answer);
+		if (article_less_noun !== null) possible_answers.push(article_less_noun);
 		if (question.question_type == QuestionType.WRITTEN_EN_TO_FR) {
-			possible_answers = get_possible_answers();
-		} else {
-			// All other types of questions are multiple choice, or questions where
-			// `answer` is the only .
-			possible_answers = [answer];
+			possible_answers.push(...get_possible_answers());
 		}
 		if (possible_answers.includes(input_value)) {
 			input_element.style.border = '2px solid green';

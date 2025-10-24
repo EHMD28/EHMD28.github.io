@@ -21,7 +21,6 @@ export function parse_flashcards_csv(text: string): FlashCardData[] {
 function parse_line(line: string, headers: string[]): FlashCardData {
 	let ret = new_flashcard_data();
 	let parts = line.split(',');
-	console.debug(`reading line: ${line}`);
 	for (let i = 0; i < headers.length; i++) {
 		switch (headers[i]) {
 			case 'term':
@@ -58,7 +57,7 @@ function parse_dict(cell: string, header: string): VerbConjugations | AdjectiveF
 	/* Empty cells should be interpereted as null. */
 	if (cell.length === 0) return null;
 	/* Get the appopriate keys for each possible return type. */
-	// TODO: Move vc_keys and af_keys to different file.
+	// TODO: Move vc_keys and af_keys to different file as global constants.
 	const vc_keys = Object.keys(new_conjugations());
 	const af_keys = Object.keys(new_adjective_forms());
 	/* Key-Value pairs are delimited using the semicolon character. */
