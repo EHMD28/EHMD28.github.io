@@ -7,6 +7,10 @@
 - [ ] Add animations
 - [ ] Add shield defender game
 
+# Projects
+
+- [ ] Add images/video for projects.
+
 # Minerva
 
 - [ ] Make answers match the questions being asked (i.e. translation fr-en should have answers in en,
