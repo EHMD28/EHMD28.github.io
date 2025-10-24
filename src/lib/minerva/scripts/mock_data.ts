@@ -33,6 +33,22 @@ export const MOCK_NOUN_WRITTEN_EN_TO_FR_QUESTION: Question = {
 	prompt: 'Translate'
 };
 
+export const MOCK_NOUN_MULTIPLE_CHOICE_FR_TO_EN_QUESTION: Question = {
+	category: QuestionCategory.MULTIPLE_CHOICE,
+	question_type: QuestionType.MULTIPLE_CHOICE_FR_TO_EN,
+	term: MOCK_NOUN_CARD.fr,
+	answer: MOCK_NOUN_CARD.en,
+	prompt: 'Translate'
+};
+
+export const MOCK_NOUN_MULTIPLE_CHOICE_EN_TO_FR_QUESTION: Question = {
+	category: QuestionCategory.MULTIPLE_CHOICE,
+	question_type: QuestionType.MULTIPLE_CHOICE_FR_TO_EN,
+	term: MOCK_NOUN_CARD.en,
+	answer: MOCK_NOUN_CARD.fr,
+	prompt: 'Translate'
+};
+
 export const MOCK_VERB_CARD: FlashCardData = {
 	fr: 'parler',
 	en: 'to speak',
