@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { conjugate_verb } from '$lib/minerva/index';
-	import { GlobalFlashcards, GlobalTags } from '$lib/minerva/data.svelte';
+	import { conjugate_verb } from '$lib/minerva/scripts/index';
 	import {
 		new_conjugations,
 		NounGender,
 		PartOfSpeech,
 		type FlashCardData
-	} from '$lib/minerva/types';
+	} from '$lib/minerva/scripts/types';
+	import { GlobalFlashcards, GlobalTags } from '../scripts/data.svelte';
 	import AdjectiveDetails from './AdjectiveDetails.svelte';
 	import NounDetails from './NounDetails.svelte';
 	import VerbDetails from './VerbDetails.svelte';
@@ -36,7 +36,7 @@
 	}
 
 	function handle_noun_term() {
-		let noun = data.term.toLowerCase().trim();
+		let noun = data.fr.toLowerCase().trim();
 		if (noun.startsWith('le')) {
 			data.noun_gender = NounGender.MALE;
 		} else if (noun.startsWith('la')) {
@@ -45,7 +45,7 @@
 	}
 
 	function handle_verb_term() {
-		let verb = data.term.toLowerCase().trim();
+		let verb = data.fr.toLowerCase().trim();
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
 			data.verb_conjugations = conjugations;
@@ -54,7 +54,7 @@
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			switch (data.term_type) {
+			switch (data.part_of_speech) {
 				case PartOfSpeech.NOUN:
 					handle_noun_term();
 					break;
@@ -70,7 +70,7 @@
 	}
 
 	function handle_remove_button() {
-		let index = GlobalFlashcards.findIndex((v) => v.term == data.term);
+		let index = GlobalFlashcards.findIndex((v) => v.fr == data.fr);
 		if (index > -1) {
 			/* Remove element at index from array. */
 			GlobalFlashcards.splice(index, 1);
@@ -92,11 +92,11 @@
 	<div class="containers-container">
 		<div class="container">
 			<label for="term">Term</label>
-			<input type="text" id="term" name="term" bind:value={data.term} onkeyup={handleTermKeyUp} />
+			<input type="text" id="term" name="term" bind:value={data.en} onkeyup={handleTermKeyUp} />
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
-			<input type="text" id="definition" name="definition" bind:value={data.definition} />
+			<input type="text" id="definition" name="definition" bind:value={data.fr} />
 		</div>
 		<WordTypeSelector {data} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>
@@ -104,11 +104,11 @@
 	<details>
 		<summary>Info</summary>
 		<div>
-			{#if data.term_type == PartOfSpeech.NOUN}
+			{#if data.part_of_speech == PartOfSpeech.NOUN}
 				<NounDetails gender={data.noun_gender} />
-			{:else if data.term_type == PartOfSpeech.VERB}
+			{:else if data.part_of_speech == PartOfSpeech.VERB}
 				<VerbDetails conjugations={data.verb_conjugations} />
-			{:else if data.term_type == PartOfSpeech.ADJECTIVE}
+			{:else if data.part_of_speech == PartOfSpeech.ADJECTIVE}
 				<AdjectiveDetails forms={data.adjective_forms} />
 			{/if}
 		</div>

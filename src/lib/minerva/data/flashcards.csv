@@ -1,0 +1,5 @@
+term,definition,term_type,noun_gender,verb_conjugations,adjective_forms,tags
+parler,to speak,verb,,je:parle;tu:parles;il:parle;vous:parlez;nous:parlons;ils:parlent,,beginner
+le chat,cat,noun,m,,,beginner;animal
+petit,small,adjective,,,male:petit;female:petite;male_plural:petits;female_plural:petites,beginner
+rarement,rarely,adverb,,,,beginner

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { GlobalFlashcards } from '$lib/minerva/data.svelte';
-	import AddCardButton from '$lib/minerva/AddCardButton.svelte';
-	import FlashCard from '$lib/minerva/FlashCard.svelte';
 	import { base } from '$app/paths';
+	import AddCardButton from '$lib/minerva/components/AddCardButton.svelte';
+	import FlashCard from '$lib/minerva/components/FlashCard.svelte';
+	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
 </script>
 
 <h1>Minerva Study Tool</h1>
