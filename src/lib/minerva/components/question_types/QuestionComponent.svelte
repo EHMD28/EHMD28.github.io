@@ -3,11 +3,17 @@
 	import MultipleChoiceTemplate from './MultipleChoiceTemplate.svelte';
 	import WrittenQuestionTemplate from './WrittenTemplate.svelte';
 
-	let { question, card }: { question: Question; card: FlashCardData } = $props();
+	interface Props {
+		question: Question;
+		card: FlashCardData;
+		flash_cards: FlashCardData[];
+	}
+
+	let { question, card, flash_cards }: Props = $props();
 </script>
 
 {#if question.category === QuestionCategory.MULTIPLE_CHOICE}
-	<MultipleChoiceTemplate term={question.term} answer={question.answer} prompt={question.prompt} />
+	<MultipleChoiceTemplate {question} {card} {flash_cards} />
 {:else if question.category === QuestionCategory.WRITTEN}
 	<WrittenQuestionTemplate {question} {card} />
 {/if}

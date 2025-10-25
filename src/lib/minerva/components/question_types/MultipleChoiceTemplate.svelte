@@ -1,33 +1,61 @@
 <script lang="ts">
-	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
+	import { QuestionType, type FlashCardData, type Question } from '$lib/minerva/scripts/types';
+	import FlashCard from '../FlashCard.svelte';
 
 	interface Props {
-		term: string;
-		answer: string;
-		prompt: string;
+		question: Question;
+		card: FlashCardData;
+		flash_cards: FlashCardData[];
 	}
 
-	const { term, answer, prompt }: Props = $props();
-	let question_options = get_options();
+	const { question, card, flash_cards }: Props = $props();
+	const { term, answer, prompt } = question;
+	const question_options = get_options();
 	let options_container: HTMLElement;
 
-	function get_options(): string[] {
-		let definitions = GlobalFlashcards.filter((v) => v.fr !== answer).map((v) => v.en);
-		for (let i = definitions.length - 1; i > 0; i--) {
+	function fischer_yates_shuffle<T>(arr: Array<T>) {
+		for (let i = arr.length - 1; i > 0; i--) {
 			let random = Math.floor(Math.random() * (i + 1));
-			[definitions[i], definitions[random]] = [definitions[random], definitions[i]];
+			[arr[i], arr[random]] = [arr[random], arr[i]];
 		}
-		/* Select first three elements of shuffled array. */
-		let ret = definitions.slice(0, 3);
-		ret.push(answer);
-		return definitions;
+	}
+
+	function get_options(): string[] {
+		let options: string[];
+		if (question.question_type === QuestionType.NOUN_GENDER_CLASSIFICATION) {
+			options = ['Male', 'Female'];
+		} else {
+			options = [question.answer];
+			// The question is a multiple choice translation question.
+			let similar_cards = flash_cards.filter(
+				(v) => v.part_of_speech === card.part_of_speech && v.fr !== card.fr
+			);
+			if (similar_cards.length < 3) similar_cards = flash_cards.filter((v) => v.fr !== card.fr);
+			fischer_yates_shuffle(similar_cards);
+			const key = question.question_type === QuestionType.MULTIPLE_CHOICE_FR_TO_EN ? 'en' : 'fr';
+			// Select the first three, randomly selected, elements of similar cards and adds them to options.
+			const chosen = similar_cards.slice(0, 3).map((v) => v[key]);
+			options.push(...chosen);
+			// Moves answer to a random position so it isn't always first.
+			const rand_index = Math.floor(Math.random() * options.length);
+			[options[0], options[rand_index]] = [options[rand_index], options[0]];
+		}
+		return options;
+	}
+
+	function check_answer(selected: string): boolean {
+		if (question.question_type === QuestionType.NOUN_GENDER_CLASSIFICATION) {
+			return selected.charAt(0).toLowerCase() === card.noun_gender;
+		} else {
+			return selected === answer;
+		}
 	}
 
 	function select_option_handler(ev: Event) {
 		const button = ev.currentTarget as HTMLButtonElement;
 		const selected = button.innerText;
 		// button.style.background = selected === answer ? 'green' : 'red';
-		if (selected === answer) {
+		if (check_answer(selected)) {
 			button.style.background = 'green';
 			for (let btn of options_container.children) {
 				(btn as HTMLButtonElement).disabled = true;
@@ -39,7 +67,7 @@
 </script>
 
 <div class="question-container">
-	<div class="question-text">Define: {term}</div>
+	<div class="question-text">{prompt}: {term}</div>
 	<div class="options-container" bind:this={options_container}>
 		{#each question_options as option}
 			<button type="button" onclick={select_option_handler}>{option}</button>

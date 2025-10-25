@@ -13,7 +13,7 @@
 
 # Minerva
 
-- [ ] Make answers match the questions being asked (i.e. translation fr-en should have answers in en,
+- [X] Make answers match the questions being asked (i.e. translation fr-en should have answers in en,
       verb questions should have verb answers, etc.).
 - [ ] Add multiple genders for noun cards
 - [ ] Handle mapping multiple definitions to one word
