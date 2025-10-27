@@ -10,6 +10,7 @@
 # Projects
 
 - [ ] Add images/video for projects.
+- [ ] Represent projects using file structure and markdown.
 
 # Minerva
 
