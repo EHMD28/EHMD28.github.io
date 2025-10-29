@@ -1,8 +1,8 @@
 import { parse_flashcards_csv } from '$lib/minerva/scripts/parse_csv';
 import type { FlashCardData } from '$lib/minerva/scripts/types.js';
+import type { LayoutLoad } from './$types';
 
-export async function load({ fetch }) {
-	// Note that URL is relative to static folder.
+export const load: LayoutLoad = async ({ fetch }) => {
 	const URL = '/minerva/flashcards.csv';
 	let result: FlashCardData[];
 	let error: Error;
@@ -18,4 +18,4 @@ export async function load({ fetch }) {
 		result,
 		error
 	};
-}
+};

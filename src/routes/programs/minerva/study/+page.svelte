@@ -1,12 +1,14 @@
 <script lang="ts">
 	import MockQuestions from '$lib/minerva/components/testing/MockQuestions.svelte';
 	import type { FlashCardData } from '$lib/minerva/scripts/types.js';
+	import type { PageProps } from './$types';
 
 	interface Props {
 		flash_cards: FlashCardData[];
 	}
 
-	let { flash_cards }: Props = $props();
+	let { data }: PageProps = $props();
+	let { result: flash_cards, error } = data;
 	const questions: FlashCardData[] = [];
 </script>
 
