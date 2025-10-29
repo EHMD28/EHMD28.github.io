@@ -1,5 +1,6 @@
 <script lang="ts">
 	import MockQuestions from '$lib/minerva/components/testing/MockQuestions.svelte';
+	import Navigator from '$lib/minerva/components/ui/Navigator.svelte';
 	import type { FlashCardData } from '$lib/minerva/scripts/types.js';
 	import type { PageProps } from './$types';
 
@@ -13,6 +14,7 @@
 </script>
 
 <h1>Study (Étudier)</h1>
+<Navigator />
 <MockQuestions {flash_cards} />
 
 <style>

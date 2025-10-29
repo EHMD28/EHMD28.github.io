@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import AddCardButton from '$lib/minerva/components/AddCardButton.svelte';
 	import FlashCard from '$lib/minerva/components/FlashCard.svelte';
+	import Navigator from '$lib/minerva/components/ui/Navigator.svelte';
 	import type { PageProps } from './$types';
 
 	/* `result` is an array of `FlashCardData`, and `error` is only assigned to if something goes wrong.
@@ -17,10 +18,11 @@
 	goddess of wisdom. You can add French vocabulary alongside the conjugations (for the verbs).
 </p>
 
-<div id="controls-container">
+<Navigator />
+<!-- <div id="controls-container">
 	<a href="{base}/programs/minerva/study">Study</a>
 	<a href="{base}/programs/minerva/test">Test</a>
-</div>
+</div> -->
 
 <div id="flashcards-container">
 	{#each flash_cards as flash_card}
@@ -33,21 +35,6 @@
 <style>
 	h1 {
 		margin-bottom: 5vh;
-	}
-
-	#controls-container {
-		margin-left: 1vw;
-	}
-
-	#controls-container > a {
-		width: 8vw;
-		font-size: 20pt;
-		margin-right: 2vw;
-	}
-
-	#controls-container > a:hover {
-		color: rgb(0, 89, 255);
-		text-decoration: none;
 	}
 
 	#flashcards-container {
