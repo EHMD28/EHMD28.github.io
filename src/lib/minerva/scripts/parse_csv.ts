@@ -23,13 +23,13 @@ function parse_line(line: string, headers: string[]): FlashCardData {
 	let parts = line.split(',');
 	for (let i = 0; i < headers.length; i++) {
 		switch (headers[i]) {
-			case 'term':
+			case 'fr':
 				ret.fr = parts[i];
 				break;
-			case 'definition':
+			case 'en':
 				ret.en = parts[i];
 				break;
-			case 'term_type':
+			case 'part_of_speech':
 				ret.part_of_speech = parts[i] as PartOfSpeech;
 				break;
 			case 'noun_gender':

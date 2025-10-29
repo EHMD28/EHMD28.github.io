@@ -6,55 +6,60 @@
 		PartOfSpeech,
 		type FlashCardData
 	} from '$lib/minerva/scripts/types';
-	import { GlobalFlashcards, GlobalTags } from '../scripts/data.svelte';
 	import AdjectiveDetails from './AdjectiveDetails.svelte';
 	import NounDetails from './NounDetails.svelte';
 	import VerbDetails from './VerbDetails.svelte';
 	import WordTypeSelector from './WordTypeSelector.svelte';
 
-	let { data }: { data: FlashCardData } = $props();
+	interface Props {
+		flash_card: FlashCardData;
+		flash_cards: FlashCardData[];
+		tags: string[];
+	}
+
+	const { flash_card, flash_cards, tags }: Props = $props();
 
 	let tag_input = $state('');
 
 	function handle_tag_add(e) {
-		if (!GlobalTags.includes(tag_input)) {
-			GlobalTags.push(tag_input);
+		if (!tags.includes(tag_input)) {
+			tags.push(tag_input);
 		}
 	}
 
 	function handle_tag_remove(e) {
-		let index = GlobalTags.indexOf(tag_input);
+		let index = tags.indexOf(tag_input);
 		if (index !== -1) {
 			/* Remove tag from array. */
-			GlobalTags.splice(index, 1);
-			let affected = GlobalFlashcards.filter((v) => v.tags.includes(tag_input));
-			for (let data of affected) {
-				index = data.tags.indexOf(tag_input);
-				data.tags.splice(index, 1);
+			tags.splice(index, 1);
+			let affected = flash_cards.filter((v) => v.tags.includes(tag_input));
+			for (let flash_card of affected) {
+				index = flash_card.tags.indexOf(tag_input);
+				flash_card.tags.splice(index, 1);
 			}
 		}
 	}
 
 	function handle_noun_term() {
-		let noun = data.fr.toLowerCase().trim();
+		let noun = flash_card.fr.toLowerCase().trim();
 		if (noun.startsWith('le')) {
-			data.noun_gender = NounGender.MALE;
+			flash_card.noun_gender = NounGender.MALE;
 		} else if (noun.startsWith('la')) {
-			data.noun_gender = NounGender.FEMALE;
+			flash_card.noun_gender = NounGender.FEMALE;
 		}
 	}
 
 	function handle_verb_term() {
-		let verb = data.fr.toLowerCase().trim();
+		let verb = flash_card.fr.toLowerCase().trim();
 		let conjugations = conjugate_verb(verb);
 		if (conjugations !== null) {
-			data.verb_conjugations = conjugations;
+			flash_card.verb_conjugations = conjugations;
 		}
 	}
 
 	function handleTermKeyUp(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			switch (data.part_of_speech) {
+			switch (flash_card.part_of_speech) {
 				case PartOfSpeech.NOUN:
 					handle_noun_term();
 					break;
@@ -70,20 +75,20 @@
 	}
 
 	function handle_remove_button() {
-		let index = GlobalFlashcards.findIndex((v) => v.fr == data.fr);
+		let index = flash_cards.findIndex((v) => v.fr == flash_card.fr);
 		if (index > -1) {
 			/* Remove element at index from array. */
-			GlobalFlashcards.splice(index, 1);
+			flash_cards.splice(index, 1);
 		}
 	}
 
 	function handle_checkbox_change(ev: Event) {
 		let checkbox = ev.currentTarget as HTMLInputElement;
 		if (checkbox.checked) {
-			data.tags.push(checkbox.id);
+			flash_card.tags.push(checkbox.id);
 		} else {
-			let index = data.tags.indexOf(checkbox.id);
-			data.tags.splice(index, 1);
+			let index = flash_card.tags.indexOf(checkbox.id);
+			flash_card.tags.splice(index, 1);
 		}
 	}
 </script>
@@ -92,35 +97,41 @@
 	<div class="containers-container">
 		<div class="container">
 			<label for="term">Term</label>
-			<input type="text" id="term" name="term" bind:value={data.en} onkeyup={handleTermKeyUp} />
+			<input
+				type="text"
+				id="term"
+				name="term"
+				bind:value={flash_card.fr}
+				onkeyup={handleTermKeyUp}
+			/>
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
-			<input type="text" id="definition" name="definition" bind:value={data.fr} />
+			<input type="text" id="definition" name="definition" bind:value={flash_card.en} />
 		</div>
-		<WordTypeSelector {data} />
+		<WordTypeSelector {flash_card} />
 		<button class="remove-button" onclick={handle_remove_button}>X</button>
 	</div>
 	<details>
 		<summary>Info</summary>
 		<div>
-			{#if data.part_of_speech == PartOfSpeech.NOUN}
-				<NounDetails gender={data.noun_gender} />
-			{:else if data.part_of_speech == PartOfSpeech.VERB}
-				<VerbDetails conjugations={data.verb_conjugations} />
-			{:else if data.part_of_speech == PartOfSpeech.ADJECTIVE}
-				<AdjectiveDetails forms={data.adjective_forms} />
+			{#if flash_card.part_of_speech == PartOfSpeech.NOUN}
+				<NounDetails gender={flash_card.noun_gender} />
+			{:else if flash_card.part_of_speech == PartOfSpeech.VERB}
+				<VerbDetails conjugations={flash_card.verb_conjugations} />
+			{:else if flash_card.part_of_speech == PartOfSpeech.ADJECTIVE}
+				<AdjectiveDetails forms={flash_card.adjective_forms} />
 			{/if}
 		</div>
 		<details>
-			<summary>Tags: {data.tags}</summary>
+			<summary>Tags: {flash_card.tags}</summary>
 			<div id="tags-select-container">
-				{#each GlobalTags as tag}
+				{#each tags as tag}
 					<input
 						type="checkbox"
 						name={tag}
 						id={tag}
-						checked={data.tags.includes(tag)}
+						checked={flash_card.tags.includes(tag)}
 						onchange={handle_checkbox_change}
 					/>
 					<label for={tag}>{tag}</label>

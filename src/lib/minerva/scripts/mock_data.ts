@@ -1,9 +1,9 @@
 import {
+	NounGender,
+	PartOfSpeech,
 	QuestionCategory,
 	QuestionType,
 	type FlashCardData,
-	type NounGender,
-	type PartOfSpeech,
 	type Question
 } from './types';
 
@@ -55,6 +55,34 @@ export const MOCK_NOUN_GENDER_QUESTION: Question = {
 	term: MOCK_NOUN_CARD.fr,
 	answer: MOCK_NOUN_CARD.noun_gender,
 	prompt: 'Classify'
+};
+
+export const MOCK_STUDENT_MALE_CARD: FlashCardData = {
+	fr: 'étudiant',
+	en: 'student',
+	part_of_speech: PartOfSpeech.NOUN,
+	noun_gender: NounGender.MALE,
+	verb_conjugations: undefined,
+	adjective_forms: undefined,
+	tags: []
+};
+
+export const MOCK_STUDENT_FEMALE_CARD: FlashCardData = {
+	fr: 'étudiante',
+	en: 'student',
+	part_of_speech: PartOfSpeech.NOUN,
+	noun_gender: NounGender.FEMALE,
+	verb_conjugations: undefined,
+	adjective_forms: undefined,
+	tags: []
+};
+
+export const MOCK_STUDENT_WRITTEN_QUESTION: Question = {
+	category: QuestionCategory.WRITTEN,
+	question_type: QuestionType.WRITTEN_EN_TO_FR,
+	term: 'student',
+	answer: 'étudiant',
+	prompt: 'Translate'
 };
 
 export const MOCK_VERB_CARD: FlashCardData = {

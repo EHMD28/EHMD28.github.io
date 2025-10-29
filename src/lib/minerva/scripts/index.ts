@@ -2,7 +2,7 @@ import type { Tense, Voice, ComposedTenseOptions } from 'french-verbs';
 import * as FrenchVerbs from 'french-verbs';
 import type { VerbsInfo } from 'french-verbs-lefff';
 import Lefff from 'french-verbs-lefff/dist/conjugations.json';
-import type { VerbConjugations } from './types';
+import type { FlashCardData, VerbConjugations } from './types';
 
 /* DO NOT CHANGE THE ORDER OF THESE VARIANTS. They intentionally line up with values for `getConjugation()`. */
 export enum ConjugationPronoun {
@@ -102,4 +102,10 @@ export function conjugate_verb(verb: string): VerbConjugations | null {
 	} catch (err) {
 		return null;
 	}
+}
+
+export function get_random_card(flash_cards: FlashCardData[]): FlashCardData | null {
+	if (flash_cards.length === 0) return null;
+	let index = Math.floor(Math.random() * flash_cards.length);
+	return flash_cards[index];
 }

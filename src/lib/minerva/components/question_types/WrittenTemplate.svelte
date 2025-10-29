@@ -6,15 +6,13 @@
 		QuestionType
 	} from '$lib/minerva/scripts/types';
 
-	// interface Props {
-	// 	prompt: string;
-	// 	term: string;
-	// 	answer: string;
-	// 	part_of_speech: PartOfSpeech;
-	// }
-	// const { prompt, term, answer, part_of_speech }: Props = $props();
+	interface Props {
+		question: Question;
+		card: FlashCardData;
+		flash_cards: FlashCardData[];
+	}
 
-	let { question, card }: { question: Question; card: FlashCardData } = $props();
+	const { question, card, flash_cards }: Props = $props();
 	let { answer, term, prompt } = question;
 	let input_value = $state('');
 	let input_element: HTMLInputElement;
@@ -27,7 +25,8 @@
 		switch (card.part_of_speech) {
 			case PartOfSpeech.NOUN:
 				// TODO: Update to include male and female form (if applicable).
-				return [answer];
+				const synonyms = flash_cards.filter((v) => v.en === card.en);
+				return synonyms.map((v) => v.fr);
 			case PartOfSpeech.VERB:
 				const conjugations = Object.keys(card.verb_conjugations).map(
 					(k) => card.verb_conjugations[k]
@@ -42,7 +41,7 @@
 	}
 
 	function get_noun_without_article(noun: string): string | null {
-		const articles = ['le', 'la', 'les'];
+		const articles = ['le', 'la', 'les', "l'"];
 		const word_separator = ' ';
 		const words = noun.split(word_separator);
 		// If the first word of the noun is an article.

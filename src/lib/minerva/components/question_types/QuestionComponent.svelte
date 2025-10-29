@@ -15,5 +15,5 @@
 {#if question.category === QuestionCategory.MULTIPLE_CHOICE}
 	<MultipleChoiceTemplate {question} {card} {flash_cards} />
 {:else if question.category === QuestionCategory.WRITTEN}
-	<WrittenQuestionTemplate {question} {card} />
+	<WrittenQuestionTemplate {question} {card} {flash_cards} />
 {/if}

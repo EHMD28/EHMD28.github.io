@@ -1,9 +1,10 @@
-<script>
-	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
-	import { new_flashcard_data } from '$lib/minerva/scripts/types';
+<script lang="ts">
+	import { new_flashcard_data, type FlashCardData } from '$lib/minerva/scripts/types';
+
+	let { flash_cards }: { flash_cards: FlashCardData[] } = $props();
 
 	function on_click() {
-		GlobalFlashcards.push(new_flashcard_data());
+		flash_cards.push(new_flashcard_data());
 	}
 </script>
 

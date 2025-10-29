@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { type FlashCardData, PartOfSpeech, NounGender, new_conjugations } from '../scripts/types';
 
-	let { data }: { data: FlashCardData } = $props();
+	let { flash_card }: { flash_card: FlashCardData } = $props();
 
 	function on_dropdown_change() {
-		switch (data.part_of_speech) {
+		switch (flash_card.part_of_speech) {
 			case PartOfSpeech.NOUN:
-				if (data.noun_gender === undefined) data.noun_gender = NounGender.MALE;
+				if (flash_card.noun_gender === undefined) flash_card.noun_gender = NounGender.MALE;
 				break;
 			case PartOfSpeech.VERB:
-				if (data.verb_conjugations === undefined) data.verb_conjugations = new_conjugations();
+				if (flash_card.verb_conjugations === undefined)
+					flash_card.verb_conjugations = new_conjugations();
 				break;
 			case PartOfSpeech.ADJECTIVE:
 				break;
@@ -24,7 +25,7 @@
 	<select
 		id="word-type"
 		name="word-type"
-		bind:value={data.part_of_speech}
+		bind:value={flash_card.part_of_speech}
 		onchange={on_dropdown_change}
 	>
 		<option value="noun">Noun</option>

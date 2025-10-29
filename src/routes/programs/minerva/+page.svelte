@@ -2,7 +2,13 @@
 	import { base } from '$app/paths';
 	import AddCardButton from '$lib/minerva/components/AddCardButton.svelte';
 	import FlashCard from '$lib/minerva/components/FlashCard.svelte';
-	import { GlobalFlashcards } from '$lib/minerva/scripts/data.svelte';
+	import type { PageProps } from './$types';
+
+	/* `result` is an array of `FlashCardData`, and `error` is only assigned to if something goes wrong.
+  	Otherwise, it's undefined. */
+	const { data }: PageProps = $props();
+	const { result: flash_cards, error } = data;
+	const tags = flash_cards.map((v) => v.tags).flat();
 </script>
 
 <h1>Minerva Study Tool</h1>
@@ -17,12 +23,12 @@
 </div>
 
 <div id="flashcards-container">
-	{#each GlobalFlashcards as flashcard}
-		<FlashCard data={flashcard} />
+	{#each flash_cards as flash_card}
+		<FlashCard {flash_card} {flash_cards} {tags} />
 	{/each}
 </div>
 
-<AddCardButton />
+<AddCardButton {flash_cards} />
 
 <style>
 	h1 {
