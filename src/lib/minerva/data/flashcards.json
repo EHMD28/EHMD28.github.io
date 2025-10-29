@@ -46,5 +46,23 @@
 		"verb_conjugations": null,
 		"adjective_forms": null,
 		"tags": ["beginner"]
+	},
+	{
+		"fr": "étudiant",
+		"en": "student",
+		"part_of_speech": "noun",
+		"noun_gender": "m",
+		"verb_conjugations": null,
+		"adjective_forms": null,
+		"tags": []
+	},
+	{
+		"fr": "étudiante",
+		"en": "student",
+		"part_of_speech": "noun",
+		"noun_gender": "f",
+		"verb_conjugations": null,
+		"adjective_forms": null,
+		"tags": []
 	}
 ]
