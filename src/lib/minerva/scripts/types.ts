@@ -356,3 +356,8 @@ export function new_question(term: string, answer: string, question_type: Questi
 		prompt: get_prompt_from_type(question_type, pronoun)
 	};
 }
+
+export interface QuestionCardPair {
+	question: Question;
+	card: FlashCardData;
+}
