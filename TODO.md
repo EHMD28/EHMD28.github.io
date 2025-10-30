@@ -17,8 +17,7 @@
 - [x] Make answers match the questions being asked (i.e. translation fr-en should have answers in en,
       verb questions should have verb answers, etc.).
 - [x] Add multiple genders for noun cards
-<!-- This might already be completed, but I need to make more tests. -->
-- [ ] Handle mapping multiple definitions to one word
+- [x] Handle mapping multiple definitions to one word
 - [ ] Keep track of answer analytics
 - [ ] Sync flashcards with database (Firebase)
 - [ ] Add study mode

@@ -9,7 +9,8 @@
   	Otherwise, it's undefined. */
 	const { data }: PageProps = $props();
 	const { result: flash_cards, error } = data;
-	const tags = flash_cards.map((v) => v.tags).flat();
+	const unique_tags = new Set(flash_cards.flatMap((v) => v.tags));
+	const tags = [...unique_tags];
 </script>
 
 <h1>Minerva Study Tool</h1>
