@@ -22,10 +22,6 @@
 	generate_new_question();
 	let current_question_index = $state(0);
 
-	// onMount(() => {
-	// 	generate_new_question();
-	// });
-
 	function generate_new_question() {
 		const random_card = get_random_card(flash_cards);
 		const random_question = generate_random_question(random_card);
@@ -33,6 +29,7 @@
 	}
 
 	function handle_next_button() {
+		generate_new_question();
 		current_question_index++;
 	}
 
