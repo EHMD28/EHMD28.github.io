@@ -2,7 +2,7 @@ import type { Tense, Voice, ComposedTenseOptions } from 'french-verbs';
 import * as FrenchVerbs from 'french-verbs';
 import type { VerbsInfo } from 'french-verbs-lefff';
 import Lefff from 'french-verbs-lefff/dist/conjugations.json';
-import type { FlashCardData, VerbConjugations } from './types';
+import type { FlashCardData, Question, QuestionCardPair, VerbConjugations } from './types';
 
 /* DO NOT CHANGE THE ORDER OF THESE VARIANTS. They intentionally line up with values for `getConjugation()`. */
 export enum ConjugationPronoun {
@@ -48,17 +48,6 @@ export function pronoun_enum_to_str(variant: ConjugationPronoun): string {
 			return 'ils/elles';
 	}
 }
-
-// export function conjugations_to_string(conj: VerbConjugations): string {
-// 	return `{
-//         je: ${conj.je},
-//         tu: ${conj.tu},
-//         il: ${conj.il},
-//         vous: ${conj.vous},
-//         nous: ${conj.nous},
-//         ils: ${conj.ils}
-//     }`;
-// }
 
 /**
  * Returns a string of the `verb` conjugated with `pronoun` in the present tense.
@@ -109,3 +98,7 @@ export function get_random_card(flash_cards: FlashCardData[]): FlashCardData | n
 	let index = Math.floor(Math.random() * flash_cards.length);
 	return flash_cards[index];
 }
+
+export function flash_cards_equal(a: FlashCardData, b: FlashCardData) {}
+
+export function question_card_pair_equal(a: QuestionCardPair, b: QuestionCardPair) {}
