@@ -22,3 +22,4 @@
 - [ ] Sync flashcards with database (Firebase)
 - [ ] Add study mode
 - [ ] Mobile-friendly
+- [ ] **Figure out why questions are being duplicated**
