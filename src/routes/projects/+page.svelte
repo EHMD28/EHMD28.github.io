@@ -7,12 +7,17 @@
 	<div class="indented">
 		<h4><a href="#kingdom-kards">Kingdom Kards Game Server</a></h4>
 	</div>
+	<h3>Kotlin Projects</h3>
+	<div class="indented">
+		<h4><a href="#chef-suggest">Chef Suggest</a></h4>
+	</div>
 </div>
 <article>
 	<section class="project">
 		<h1 id="m-calc">
 			<a href="https://github.com/EHMD28/m-calc_ver.4" target="_blank">M-Calculator Version 4</a>
 		</h1>
+		<img src="/assets/projects/m-calc_v4.png" alt="M-Calculator command line output" />
 		<p>
 			M-Calculator 4 is a fully featured scientific calculator written in pure C, no libraries
 			(except ones I wrote). This is my first non-trivial project I created. If you're wondering why
@@ -34,6 +39,17 @@
 		</p>
 	</section>
 	<hr />
+	<section class="project">
+		<h1 id="chef-suggest">Chef Suggest</h1>
+		<img src="/assets/projects/ChefSuggestLogo.png" alt="Chef Suggest Logo" />
+		<p>
+			Chef Suggest is a meal suggestion app I created for a family member. The user can create and
+			edit a list of meals, then they can generate a list of meals using several filters. The
+			project was written in Kotlin using Swing, and I plan to also create an Android app,
+			integrating both of them using Firebase.
+		</p>
+	</section>
+	<hr />
 </article>
 
 <style>
@@ -45,6 +61,16 @@
 		bottom: 0;
 		padding: 10pt;
 		background-color: rgb(11, 11, 37);
+	}
+
+	section.project {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	section.project > img {
+		margin-top: 2vh;
 	}
 
 	h3 {
