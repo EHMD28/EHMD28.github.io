@@ -4,6 +4,7 @@
 	let { forms }: { forms: AdjectiveForms } = $props();
 </script>
 
+<!-- TODO: Make state reactive for these values -->
 <div class="adjective-forms-container">
 	<div>
 		<label for="m-adj">Male:</label>

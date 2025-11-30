@@ -4,6 +4,7 @@
 	let { conjugations }: { conjugations: VerbConjugations } = $props();
 </script>
 
+<!-- TODO: Make state reactive for these values -->
 <div id="conjugations-container">
 	<label for="je-conj">Je</label>
 	<input type="text" name="je-conj" id="je-conj" bind:value={conjugations.je} />

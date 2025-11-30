@@ -97,6 +97,7 @@
 	<div class="containers-container">
 		<div class="container">
 			<label for="term">Term</label>
+			<!-- TODO: Make state reactive for these values -->
 			<input
 				type="text"
 				id="term"
@@ -107,6 +108,7 @@
 		</div>
 		<div class="container">
 			<label for="definition">Definition</label>
+			<!-- TODO: Make state reactive for these values -->
 			<input type="text" id="definition" name="definition" bind:value={flash_card.en} />
 		</div>
 		<WordTypeSelector {flash_card} />
