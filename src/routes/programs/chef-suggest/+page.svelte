@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { beforeNavigate } from '$app/navigation';
 	import type { Meal } from '$lib/chef-suggest/types.js';
 
 	let { data } = $props();
@@ -33,23 +34,60 @@
 		displayedMeals = generated;
 	}
 
+	function getMealsAsText() {
+		let today = new Date().toLocaleDateString();
+		let textLines = [`Meals for ${today}`];
+		for (let i = 0; i < displayedMeals.length; i++) {
+			textLines.push(`${i + 1}. ${displayedMeals[i].name}`);
+		}
+		let text = textLines.join('\n');
+		text = text.concat('\n');
+		return text;
+	}
+
 	async function copyMeals() {
 		try {
-			let today = new Date().toLocaleDateString();
-			let textLines = [`Meals for ${today}`];
-			for (let i = 0; i < displayedMeals.length; i++) {
-				textLines.push(`${i + 1}. ${displayedMeals[i].name}`);
-			}
-			let text = textLines.join('\n');
-			text = text.concat('\n');
+			const text = getMealsAsText();
 			await navigator.clipboard.writeText(text);
+			alert(`Copied meals to your clipboard.\n${text}`);
 		} catch (err) {
 			alert(`Your browser does not allow copying text. Error: ${err}`);
 		}
 	}
+
+	function downloadMeals() {
+		let date = new Date().toLocaleDateString();
+		// Replace forward slashes with hyphens.
+		date = date.replace(/\//g, '-');
+		const content = getMealsAsText();
+		const file = new File([content], `meals-${date}`, {
+			type: 'text/plain'
+		});
+		const uri = URL.createObjectURL(file);
+		const a = document.createElement('a');
+		a.style.display = 'none';
+		a.href = uri;
+		a.download = file.name;
+		a.click();
+		URL.revokeObjectURL(uri);
+	}
+
+	function beforeUnload(event: Event) {
+		event.preventDefault();
+		return '';
+	}
+
+	beforeNavigate((nav) => {
+		if (!confirm('Do you want to leave? Any changes will be unsaved.')) {
+			nav.cancel();
+		}
+	});
 </script>
 
+<svelte:window on:beforeunload={beforeUnload} />
+
 <main>
+	<h1>Chef Suggest (Web)</h1>
 	<ol id="meals-list">
 		{#each displayedMeals as meal, index}
 			<div>
@@ -77,14 +115,18 @@
 				bind:value={numMeals}
 			/>
 		</div>
-		<button id="generate-button" type="button" onclick={generateMeals}>Generate New Meals</button>
-		<button id="copy-button" type="button" onclick={copyMeals}>Copy Meals</button>
+		<button type="button" onclick={generateMeals}>Generate New Meals</button>
+		<button type="button" onclick={copyMeals}>Copy Meals</button>
+		<button type="button" onclick={downloadMeals}>Download Meals</button>
 	</div>
 </main>
 
 <style>
 	main {
-		margin: 5vh 5vw;
+		/* For some reason, extending the margin of the main element isn't behaving in the way I would expect. */
+		margin: 0 5vw;
+		margin-top: 5vh;
+		margin-bottom: 40vh;
 	}
 
 	.meals-list-name-text {

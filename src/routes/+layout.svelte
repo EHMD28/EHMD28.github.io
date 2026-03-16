@@ -32,6 +32,7 @@
 		align-items: center;
 		justify-content: space-between;
 		background-color: rgb(0, 0, 255);
+		z-index: 1;
 	}
 
 	nav > div#links {
