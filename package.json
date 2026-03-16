@@ -35,6 +35,7 @@
 	"dependencies": {
 		"ehmd28.github.io": "link:",
 		"french-verbs": "^5.4.0",
-		"french-verbs-lefff": "^3.4.0"
+		"french-verbs-lefff": "^3.4.0",
+		"papaparse": "^5.5.3"
 	}
 }
