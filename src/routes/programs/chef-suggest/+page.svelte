@@ -32,6 +32,21 @@
 		}
 		displayedMeals = generated;
 	}
+
+	async function copyMeals() {
+		try {
+			let today = new Date().toLocaleDateString();
+			let textLines = [`Meals for ${today}`];
+			for (let i = 0; i < displayedMeals.length; i++) {
+				textLines.push(`${i + 1}. ${displayedMeals[i].name}`);
+			}
+			let text = textLines.join('\n');
+			text = text.concat('\n');
+			await navigator.clipboard.writeText(text);
+		} catch (err) {
+			alert(`Your browser does not allow copying text. Error: ${err}`);
+		}
+	}
 </script>
 
 <main>
@@ -63,6 +78,7 @@
 			/>
 		</div>
 		<button id="generate-button" type="button" onclick={generateMeals}>Generate New Meals</button>
+		<button id="copy-button" type="button" onclick={copyMeals}>Copy Meals</button>
 	</div>
 </main>
 
@@ -103,5 +119,9 @@
 		grid-template-columns: auto auto;
 		column-gap: 2.5vw;
 		align-items: center;
+	}
+
+	button {
+		cursor: pointer;
 	}
 </style>
