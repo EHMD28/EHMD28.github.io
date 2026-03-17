@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Minerva Study Tool</title>
+	<title>Programs</title>
 </svelte:head>
 
 {@render children()}

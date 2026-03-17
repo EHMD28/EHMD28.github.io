@@ -84,6 +84,9 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Chef Suggest</title>
+</svelte:head>
 <svelte:window on:beforeunload={beforeUnload} />
 
 <main>
