@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import favicon from "$lib/assets/favicon.svg";
+	import Footer from "$lib/components/main/Footer.svelte";
+	import Navbar from "$lib/components/main/Navbar.svelte";
 	import "../app.css";
 	import "../themes/dark.css";
 
@@ -11,22 +13,19 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<nav class="dark">
-	<h1>EHMD28 Personal Website</h1>
-	<div>
-		<a href={resolve("/")}>Home</a>
-		<a href={resolve("/about")}>Projects</a>
-		<a href={resolve("/programs")}>Programs</a>
-		<a href={resolve("/projects")}>About</a>
-	</div>
-</nav>
-<main>
+<Navbar />
+<main class="dark">
 	{@render children()}
 </main>
+<Footer />
 
 <style>
-	nav {
-		background-color: var(--md-sys-color-primary-container);
-		color: var(--md-sys-color-on-primary-container);
+	main {
+		flex: 1 0 auto;
+
+		padding: 2vh 2.5vw;
+
+		background-color: var(--md-sys-color-surface);
+		color: var(--md-sys-color-on-surface);
 	}
 </style>
