@@ -6,9 +6,9 @@
     <h1>EHMD28 Personal Website</h1>
     <div id="quick-links-container">
         <a href={resolve("/")}>Home</a>
-        <a href={resolve("/about")}>Projects</a>
+        <a href={resolve("/projects")}>Projects</a>
         <a href={resolve("/programs")}>Programs</a>
-        <a href={resolve("/projects")}>About</a>
+        <a href={resolve("/about")}>About</a>
     </div>
 </nav>
 
