@@ -1,5 +1,5 @@
 <footer class="dark">
-    <a href="https://github.com/EHMD28">GitHub</a>
+    <a href="https://github.com/EHMD28" target="_blank">GitHub</a>
 </footer>
 
 <style>

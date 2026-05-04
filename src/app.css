@@ -13,9 +13,25 @@ body {
 }
 
 p {
+    font-size: 12pt;
     line-height: 2;
 }
 
 a {
     text-decoration: none;
+}
+
+pre,
+code {
+    padding: 2px 4px;
+
+    background: black;
+    color: rgb(197, 112, 112);
+
+    font-family: monospace;
+}
+
+pre {
+    padding: 10px;
+
 }

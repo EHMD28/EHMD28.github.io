@@ -9,4 +9,8 @@ P.S. I extend a formal apology to anyone who is about to read this codebase.
 ## To-Do
 
 - [ ] Add Stylelint
-
+- [ ] Add Roboto Mono for code
+- [ ] Add syntax highlighting for code blocks
+- [ ] Make favicon
+- [ ] Add AsteroidDefender to `programs/`
+- [ ] Add Chef Suggest to `programs/`
