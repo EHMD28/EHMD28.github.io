@@ -8,11 +8,11 @@
     let { data }: Props = $props();
 </script>
 
-<div class="project-card dark">
+<a class="project-card dark" href={data.fullPageLink}>
     <h3>{data.title}</h3>
     <img src={data.imageUrl} alt={`${data.title}`} />
     <p>{data.description}</p>
-</div>
+</a>
 
 <style>
     .project-card {
@@ -26,6 +26,15 @@
         border-radius: 15%;
 
         border: 2px solid var(--md-sys-color-outline);
+        color: var(--md-sys-color-on-surface);
+
+        transition: background-color 500ms;
+    }
+
+    .project-card:hover {
+        background-color: var(--md-sys-color-secondary-container);
+
+        cursor: pointer;
     }
 
     .project-card > h3 {

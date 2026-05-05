@@ -2,6 +2,7 @@ import csmgImage from "$lib/assets/main/projects/color-sequence-memory-game-sche
 import cosmoImage from "$lib/assets/main/projects/cosmo-ui.png";
 import mcalc4Image from "$lib/assets/main/projects/mcalc4-ui.png";
 import eosExplorerImage from "$lib/assets/main/projects/eos-explorer-ui.png";
+import { resolve } from "$app/paths";
 
 type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "svelte" | "javascript" | "typescript";
 type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "compose" | "arduino" | "stm32" | "esp32";
@@ -12,6 +13,7 @@ type AllowedTags = ProgrammingLanguage | PlatformsAndFrameworks | Topics | UserI
 export interface ProjectData {
     title: string;
     imageUrl: string;
+    fullPageLink: string;
     description: string;
     github_link: string;
     demo_link: string | null;
@@ -25,7 +27,8 @@ export const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/m-calc_ver.4",
         demo_link: null,
         tags: ["c", "cli"],
-        imageUrl: mcalc4Image
+        imageUrl: mcalc4Image,
+        fullPageLink: resolve("/projects/mcalc4")
     },
     {
         title: "EoS Explorer",
@@ -33,7 +36,8 @@ export const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/EOS-explorer",
         demo_link: "https://ehmd28-eos-explorer.streamlit.app/",
         tags: ["python", "physics", "web", "streamlit"],
-        imageUrl: eosExplorerImage
+        imageUrl: eosExplorerImage,
+        fullPageLink: resolve("/projects/eos-explorer")
     },
     {
         title: "Cosmo",
@@ -41,7 +45,8 @@ export const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/cosmo-text-editor",
         demo_link: null,
         tags: ["rust", "tui"],
-        imageUrl: cosmoImage
+        imageUrl: cosmoImage,
+        fullPageLink: resolve("/projects/cosmo")
     },
     {
         title: "Color Sequence Memory Game",
@@ -49,6 +54,7 @@ export const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/DesignFinalProject",
         demo_link: null,
         tags: ["c++", "arduino", "electronics"],
-        imageUrl: csmgImage
+        imageUrl: csmgImage,
+        fullPageLink: resolve("/projects/color-sequence-memory-game")
     }
 ]
