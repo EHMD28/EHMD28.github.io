@@ -23,7 +23,7 @@
 	main {
 		flex: 1 0 auto;
 
-		padding: 2vh 2.5vw;
+		padding: 5vh 2.5vw;
 
 		background-color: var(--md-sys-color-surface);
 		color: var(--md-sys-color-on-surface);

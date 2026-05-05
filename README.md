@@ -4,8 +4,6 @@ This is the source code for my personal [website](https://ehmd28.github.io). It 
 
 **I make no claims of being a web developer nor a UI designer, which absolves me of any liability regarding coding style and design of the website :).**
 
-P.S. I extend a formal apology to anyone who is about to read this codebase. 
-
 ## To-Do
 
 - [ ] Add Stylelint

@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+    import { ALL_PROJECTS } from "$lib";
     import ProjectCard from "$lib/components/main/ProjectCard.svelte";
 </script>
 
@@ -6,6 +7,16 @@
     <title>Projects</title>
 </svelte:head>
 
-<!-- {#each ALL_PROJECTS as project}
-    <ProjectCard data={project} />
-{/each} -->
+<div id="project-cards-container">
+    {#each ALL_PROJECTS as project}
+        <ProjectCard data={project} />
+    {/each}
+</div>
+
+<style>
+    #project-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 275px);
+        gap: 25px 75px;
+    }
+</style>

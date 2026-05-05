@@ -1,10 +1,15 @@
+import csmgImage from "$lib/assets/main/projects/color-sequence-memory-game-schematic.png";
+import cosmoImage from "$lib/assets/main/projects/cosmo-ui.png";
+import mcalc4Image from "$lib/assets/main/projects/mcalc4-ui.png";
+import eosExplorerImage from "$lib/assets/main/projects/eos-explorer-ui.png";
+
 type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "svelte" | "javascript" | "typescript";
 type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "compose" | "arduino" | "stm32" | "esp32";
 type Topics = "robotics" | "math" | "physics" | "electronics" | "simulation";
 type UserInterface = "cli" | "tui" | "mobile" | "desktop" | "web";
 type AllowedTags = ProgrammingLanguage | PlatformsAndFrameworks | Topics | UserInterface;
 
-interface ProjectData {
+export interface ProjectData {
     title: string;
     imageUrl: string;
     description: string;
@@ -13,14 +18,14 @@ interface ProjectData {
     tags: AllowedTags[];
 }
 
-const ALL_PROJECTS: ProjectData[] = [
+export const ALL_PROJECTS: ProjectData[] = [
     {
         title: "M-Calculator 4",
         description: "M-Calculator 4 is a CLI scientific calculator written in C. The calculator supports arithmetic, trigonometric functions, logarithms, mathematical constants, and variables.",
         github_link: "https://github.com/EHMD28/m-calc_ver.4",
         demo_link: null,
         tags: ["c", "cli"],
-        imageUrl: ""
+        imageUrl: mcalc4Image
     },
     {
         title: "EoS Explorer",
@@ -28,7 +33,7 @@ const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/EOS-explorer",
         demo_link: "https://ehmd28-eos-explorer.streamlit.app/",
         tags: ["python", "physics", "web", "streamlit"],
-        imageUrl: ""
+        imageUrl: eosExplorerImage
     },
     {
         title: "Cosmo",
@@ -36,7 +41,7 @@ const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/cosmo-text-editor",
         demo_link: null,
         tags: ["rust", "tui"],
-        imageUrl: ""
+        imageUrl: cosmoImage
     },
     {
         title: "Color Sequence Memory Game",
@@ -44,6 +49,6 @@ const ALL_PROJECTS: ProjectData[] = [
         github_link: "https://github.com/EHMD28/DesignFinalProject",
         demo_link: null,
         tags: ["c++", "arduino", "electronics"],
-        imageUrl: ""
+        imageUrl: csmgImage
     }
 ]
