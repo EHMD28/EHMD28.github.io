@@ -35,5 +35,13 @@
 
     a {
         color: var(--md-sys-color-on-primary-container);
+
+        transition: translate 1s;
+    }
+
+    a:hover {
+        text-decoration: underline;
+
+        transform: translateY(-5px);
     }
 </style>
