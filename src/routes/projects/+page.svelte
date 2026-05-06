@@ -16,7 +16,9 @@
 <style>
     #project-cards-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 275px);
+        grid-template-columns: repeat(auto-fit, 300px);
         gap: 25px 75px;
+        align-content: center;
+        justify-content: center;
     }
 </style>

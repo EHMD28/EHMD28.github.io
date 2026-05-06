@@ -17,16 +17,17 @@
 <style>
     .project-card {
         display: grid;
-        grid-template-rows: 10% 40% 50%;
-        gap: 15px;
+        grid-template-rows: auto auto 1fr;
+        gap: 10px;
         justify-content: center;
 
         width: 100%;
         aspect-ratio: 3 / 4;
-        border-radius: 15%;
+        border-radius: 10%;
 
         border: 2px solid var(--md-sys-color-outline);
-        color: var(--md-sys-color-on-surface);
+        background-color: var(--md-sys-color-surface-container-highest);
+        color: var(--md-sys-color-on-surface-variant);
 
         transition: background-color 500ms;
     }
@@ -40,6 +41,7 @@
     .project-card > h3 {
         height: 100%;
         width: 100%;
+        padding: 5px 0;
 
         font-size: 100%;
         text-align: center;
@@ -49,11 +51,14 @@
 
     .project-card > img {
         width: 100%;
+
+        border-top: 2px solid var(--md-sys-color-outline);
+        border-bottom: 2px solid var(--md-sys-color-outline);
     }
 
     .project-card > p {
-        padding: 0 10px;
+        justify-self: end;
 
-        font-size: 90%;
+        padding: 10px 10px;
     }
 </style>
