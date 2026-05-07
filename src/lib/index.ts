@@ -3,9 +3,10 @@ import cosmoImage from "$lib/assets/main/projects/cosmo-ui.png";
 import mcalc4Image from "$lib/assets/main/projects/mcalc4-ui.png";
 import eosExplorerImage from "$lib/assets/main/projects/eos-explorer-ui.png";
 import chefSuggestImage from "$lib/assets/main/projects/chef-suggest-logo.png"
+import langGameImage from "$lib/assets/main/projects/lang-game-ui.png";
 import { resolve } from "$app/paths";
 
-type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "svelte" | "javascript" | "typescript";
+type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "javascript" | "typescript";
 type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "android" | "arduino" | "stm32" | "esp32";
 type Topics = "robotics" | "math" | "physics" | "electronics" | "simulation";
 type UserInterface = "cli" | "tui" | "mobile" | "desktop" | "web";
@@ -42,7 +43,7 @@ export const ALL_PROJECTS: ProjectData[] = [
     },
     {
         title: "Cosmo",
-        description: "Cosmo is a terminal-based text edtior written in Rust using Ratatui. The application supports unicode and modal editing.",
+        description: "Cosmo is a terminal-based text editor written in Rust using Ratatui. The application supports unicode and modal editing.",
         githubLink: "https://github.com/EHMD28/cosmo-text-editor",
         demoLink: null,
         tags: ["rust", "tui"],
@@ -65,6 +66,15 @@ export const ALL_PROJECTS: ProjectData[] = [
         demoLink: resolve("/programs/chef-suggest"),
         tags: ["kotlin", "android"],
         imageUrl: chefSuggestImage,
-        articleLink: "",
+        articleLink: resolve("/projects/chef-suggest"),
+    },
+    {
+        title: "Programming Language Game",
+        imageUrl: langGameImage,
+        articleLink: resolve("/projects/lang-game"),
+        description: "This is a web application I made over the summer for a high school summer independent research project. The goal of the game is to identify which programming language corresponds to which space using the relationships between spaces and hint cards.",
+        githubLink: "https://github.com/EHMD28/SummerProject2025",
+        demoLink: resolve("/programs/lang-game"),
+        tags: ["sveltekit", "typescript", "web"]
     }
 ]
