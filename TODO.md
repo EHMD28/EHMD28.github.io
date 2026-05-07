@@ -3,4 +3,4 @@
 - [ ] Add syntax highlighting for code blocks
 - [ ] Make favicon
 - [ ] Add AsteroidDefender to `programs/`
-- [ ] Add Chef Suggest to `programs/`
+- [x] Add Chef Suggest to `programs/`
