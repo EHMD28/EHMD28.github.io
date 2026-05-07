@@ -7,7 +7,6 @@
     <div id="quick-links-container">
         <a href={resolve("/")}>Home</a>
         <a href={resolve("/projects")}>Projects</a>
-        <a href={resolve("/programs")}>Programs</a>
         <a href={resolve("/about")}>About</a>
     </div>
 </nav>
@@ -36,7 +35,7 @@
     a {
         color: var(--md-sys-color-on-primary-container);
 
-        transition: translate 1s;
+        transition: transform 500ms;
     }
 
     a:hover {

@@ -9,7 +9,7 @@ element {
     /* 3 - Box Model (width, height, margin, padding, overflow, etc.) */
     /* 4 - Color (background, foreground, border, etc.) */
     /* 5 - Font (family, decoration, size, alignment, etc.) */
-    /* 6 - Cursor */
+    /* 6 - Cursor, scrollbar, etc. */
     /* 7 - Animations (transform, translate, transition, animation, etc.) */
 }
 ```

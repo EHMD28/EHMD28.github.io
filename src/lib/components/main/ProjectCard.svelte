@@ -5,19 +5,30 @@
         data: ProjectData;
     }
 
-    let { data }: Props = $props();
+    const { data }: Props = $props();
+
+    function getDemoLinkTarget(): "_self" | "_blank" {
+        return data.demoLink?.includes("programs/") ? "_self" : "_blank";
+    }
 </script>
 
-<a class="project-card dark" href={data.fullPageLink}>
+<div class="project-card dark">
     <h3>{data.title}</h3>
     <img src={data.imageUrl} alt={`${data.title}`} />
     <p>{data.description}</p>
-</a>
+    <div class="card-links">
+        <a href={data.articleLink}>Article</a>
+        <a href={data.githubLink} target="_blank">GitHub</a>
+        {#if data.demoLink !== null}
+            <a href={data.demoLink} target={getDemoLinkTarget()}>Demo</a>
+        {/if}
+    </div>
+</div>
 
 <style>
     .project-card {
         display: grid;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto auto 1fr auto;
         gap: 10px;
         justify-content: center;
 
@@ -34,8 +45,6 @@
 
     .project-card:hover {
         background-color: var(--md-sys-color-secondary-container);
-
-        cursor: pointer;
     }
 
     .project-card > h3 {
@@ -60,5 +69,27 @@
         justify-self: end;
 
         padding: 10px 10px;
+        overflow-y: auto;
+
+        scrollbar-width: thin;
+        scrollbar-color: var(--md-sys-color-outline) transparent;
+    }
+
+    .card-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        padding: 15px 0;
+    }
+
+    .card-links > a {
+        color: var(--md-sys-color-on-surface-variant);
+
+        transition: transform 500ms;
+    }
+
+    .card-links a:hover {
+        transform: translateY(-5px);
     }
 </style>
