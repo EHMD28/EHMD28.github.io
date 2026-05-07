@@ -7,7 +7,6 @@
     <div id="quick-links-container">
         <a href={resolve("/")}>Home</a>
         <a href={resolve("/projects")}>Projects</a>
-        <a href={resolve("/about")}>About</a>
     </div>
 </nav>
 
@@ -27,7 +26,7 @@
 
     #quick-links-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
 
         width: 25%;
     }

@@ -28,8 +28,9 @@
 <style>
     .project-card {
         display: grid;
-        grid-template-rows: auto auto 1fr auto;
+        grid-template-rows: auto 40% 1fr auto;
         gap: 10px;
+        justify-items: center;
         justify-content: center;
 
         width: 100%;
@@ -47,7 +48,7 @@
         background-color: var(--md-sys-color-secondary-container);
     }
 
-    .project-card > h3 {
+    .project-card h3 {
         height: 100%;
         width: 100%;
         padding: 5px 0;
@@ -58,18 +59,17 @@
         align-content: center;
     }
 
-    .project-card > img {
-        width: 100%;
-
-        border-top: 2px solid var(--md-sys-color-outline);
-        border-bottom: 2px solid var(--md-sys-color-outline);
+    .project-card img {
+        height: 100%;
     }
 
-    .project-card > p {
+    .project-card p {
         justify-self: end;
 
         padding: 10px 10px;
         overflow-y: auto;
+
+        border-top: 1px solid var(--md-sys-color-outline);
 
         scrollbar-width: thin;
         scrollbar-color: var(--md-sys-color-outline) transparent;
@@ -80,10 +80,13 @@
         flex-direction: row;
         justify-content: space-around;
 
+        border-top: 1px solid var(--md-sys-color-outline);
+
+        width: 100%;
         padding: 15px 0;
     }
 
-    .card-links > a {
+    .card-links a {
         color: var(--md-sys-color-on-surface-variant);
 
         transition: transform 500ms;

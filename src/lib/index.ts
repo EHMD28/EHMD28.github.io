@@ -2,10 +2,11 @@ import csmgImage from "$lib/assets/main/projects/color-sequence-memory-game-sche
 import cosmoImage from "$lib/assets/main/projects/cosmo-ui.png";
 import mcalc4Image from "$lib/assets/main/projects/mcalc4-ui.png";
 import eosExplorerImage from "$lib/assets/main/projects/eos-explorer-ui.png";
+import chefSuggestImage from "$lib/assets/main/projects/chef-suggest-logo.png"
 import { resolve } from "$app/paths";
 
 type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "svelte" | "javascript" | "typescript";
-type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "compose" | "arduino" | "stm32" | "esp32";
+type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "android" | "arduino" | "stm32" | "esp32";
 type Topics = "robotics" | "math" | "physics" | "electronics" | "simulation";
 type UserInterface = "cli" | "tui" | "mobile" | "desktop" | "web";
 type AllowedTags = ProgrammingLanguage | PlatformsAndFrameworks | Topics | UserInterface;
@@ -56,5 +57,14 @@ export const ALL_PROJECTS: ProjectData[] = [
         tags: ["c++", "arduino", "electronics"],
         imageUrl: csmgImage,
         articleLink: resolve("/projects/color-sequence-memory-game")
+    },
+    {
+        title: "Chef Suggest",
+        description: "Chef Suggest is a weekly meal generation program. I am going to be make it into a mobile app, but it is currently available as a simple web app.",
+        githubLink: "https://github.com/EHMD28/ChefSuggest/",
+        demoLink: resolve("/programs/chef-suggest"),
+        tags: ["kotlin", "android"],
+        imageUrl: chefSuggestImage,
+        articleLink: "",
     }
 ]
