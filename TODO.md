@@ -1,0 +1,6 @@
+- [ ] Add Stylelint
+- [ ] Add Roboto Mono for code
+- [ ] Add syntax highlighting for code blocks
+- [ ] Make favicon
+- [ ] Add AsteroidDefender to `programs/`
+- [ ] Add Chef Suggest to `programs/`
