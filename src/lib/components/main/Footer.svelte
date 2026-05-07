@@ -4,11 +4,11 @@
 </script>
 
 <footer class="dark">
-    <a href="mailto:ehmdiagne0530@gmail.com" target="_blank">
+    <a class="link" href="mailto:ehmdiagne0530@gmail.com" target="_blank">
         <img src={emailLogo} width={48} alt="" />
         <span>Email: ehmdiagne0530@gmail.com</span>
     </a>
-    <a href="https://github.com/EHMD28" target="_blank">
+    <a class="link" href="https://github.com/EHMD28" target="_blank">
         <img src={githubLogo} width={48} alt="" />
         <span>Github</span>
     </a>
@@ -26,7 +26,7 @@
         color: var(--md-sys-color-on-surface);
     }
 
-    a {
+    .link {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -35,7 +35,7 @@
         color: var(--md-sys-color-on-primary-container);
     }
 
-    a > img {
+    .link > img {
         padding: 2px;
         border-radius: 50%;
 
