@@ -1,5 +1,4 @@
 <script lang="ts">
-	import hljs from "highlight.js/lib/core";
 	import favicon from "$lib/assets/favicon.svg";
 	import Footer from "$lib/components/main/Footer.svelte";
 	import Navbar from "$lib/components/main/Navbar.svelte";
