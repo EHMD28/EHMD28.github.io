@@ -3,7 +3,6 @@
     import "highlight.js/styles/github-dark.css";
     import hljs from "highlight.js/lib/core";
     import javaLang from "highlight.js/lib/languages/java";
-    import csmgCircuitImage from "$lib/assets/main/projects/csmg-circuit.png";
     import articulatedSnakeImage from "$lib/assets/main/projects/articulated-snake-assembly.png";
     import { onMount } from "svelte";
 
