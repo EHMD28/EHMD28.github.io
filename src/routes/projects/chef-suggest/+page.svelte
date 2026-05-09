@@ -1,6 +1,11 @@
 <script>
     import { resolve } from "$app/paths";
+    import "../projects.css";
 </script>
+
+<svelte:head>
+    <title>Chef Suggest | Projects</title>
+</svelte:head>
 
 <article>
     <h1>Chef Suggest</h1>

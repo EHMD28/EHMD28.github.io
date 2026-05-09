@@ -1,3 +1,7 @@
+<script>
+    import "../projects.css";
+</script>
+
 <svelte:head>
     <title>M-Calculator 4 | Projects</title>
 </svelte:head>
@@ -46,11 +50,3 @@
         handling.
     </p>
 </article>
-
-<style>
-    article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>

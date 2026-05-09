@@ -1,3 +1,11 @@
+<script>
+    import "../projects.css";
+</script>
+
+<svelte:head>
+    <title>Color Sequence Memory Game | Projects</title>
+</svelte:head>
+
 <article>
     <h1>Color Sequence Memory Game</h1>
     <p>
@@ -25,11 +33,3 @@
         allowfullscreen
     ></iframe>
 </article>
-
-<style>
-    article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>

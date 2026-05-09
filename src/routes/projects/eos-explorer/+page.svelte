@@ -1,3 +1,11 @@
+<script>
+    import "../projects.css";
+</script>
+
+<svelte:head>
+    <title>EoS Explorer | Projects</title>
+</svelte:head>
+
 <article>
     <h1>EoS Explorer</h1>
     <p>
@@ -53,11 +61,3 @@
         when recording, so I'm not sure what happened.
     </p>
 </article>
-
-<style>
-    article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>

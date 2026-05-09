@@ -149,7 +149,10 @@ public class DrivetrainSubsystem extends SubsystemBase &lbrace;
 &rbrace;</code
                     ></pre>
                 <div class="caption">
-                    Metrobots 2025 Rookie Robot Swerve Drive Code
+                    <a
+                        href="https://github.com/metrobots/26-Rookie/blob/32ccb3ba9ff398da91f6409dd19ca9e556fe7fff/src/main/java/frc/robot/subsystems/drivetrain/Drivetrain.java"
+                        >Metrobots 2026 Rookie Robot Swerve Drive Code</a
+                    >
                 </div>
             </div>
         </section>
@@ -159,7 +162,12 @@ public class DrivetrainSubsystem extends SubsystemBase &lbrace;
         <section class="text-and-figure">
             <figure class="image-and-caption">
                 <img src={articulatedSnakeImage} alt="" />
-                <figcaption>Articulated Snake Fidget Model</figcaption>
+                <figcaption>
+                    <a
+                        href="https://cad.onshape.com/documents/a0e0aa9482a9b371aa4e7fe3/w/8b2cf2efb04eb8e2b11fd173/e/1ba6562c2f40b2d722ed71f3?renderMode=0&uiState=69ff33881817254ec966fc57"
+                        >Articulated Snake Fidget Model</a
+                    >
+                </figcaption>
             </figure>
             <p>
                 In terms of programming languages, I mainly use Rust, Kotlin,

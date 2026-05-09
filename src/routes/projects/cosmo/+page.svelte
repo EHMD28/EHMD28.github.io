@@ -1,3 +1,7 @@
+<script>
+    import "../projects.css";
+</script>
+
 <svelte:head>
     <title>Cosmo | Projects</title>
 </svelte:head>
@@ -32,11 +36,3 @@
         allowfullscreen
     ></iframe>
 </article>
-
-<style>
-    article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>

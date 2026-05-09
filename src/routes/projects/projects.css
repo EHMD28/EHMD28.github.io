@@ -1,0 +1,10 @@
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+iframe {
+    width: 50vw;
+    aspect-ratio: 16 / 9;
+}
