@@ -1,0 +1,80 @@
+import csmgImage from "$lib/assets/main/projects/color-sequence-memory-game-schematic.png";
+import cosmoImage from "$lib/assets/main/projects/cosmo-ui.png";
+import mcalc4Image from "$lib/assets/main/projects/mcalc4-ui.png";
+import eosExplorerImage from "$lib/assets/main/projects/eos-explorer-ui.png";
+import chefSuggestImage from "$lib/assets/main/projects/chef-suggest-logo.png"
+import langGameImage from "$lib/assets/main/projects/lang-game-ui.png";
+import { resolve } from "$app/paths";
+
+type ProgrammingLanguage = "c" | "c++" | "python" | "kotlin" | "rust" | "java" | "javascript" | "typescript";
+type PlatformsAndFrameworks = "sveltekit" | "streamlit" | "android" | "arduino" | "stm32" | "esp32";
+type Topics = "robotics" | "math" | "physics" | "electronics" | "simulation";
+type UserInterface = "cli" | "tui" | "mobile" | "desktop" | "web";
+type AllowedTags = ProgrammingLanguage | PlatformsAndFrameworks | Topics | UserInterface;
+
+export interface ProjectData {
+    title: string;
+    imageUrl: string;
+    articleLink: string;
+    description: string;
+    githubLink: string;
+    demoLink: string | null;
+    tags: AllowedTags[];
+}
+
+export const ALL_PROJECTS: ProjectData[] = [
+    {
+        title: "M-Calculator 4",
+        description: "M-Calculator 4 is a CLI scientific calculator written in C. The calculator supports arithmetic, trigonometric functions, logarithms, mathematical constants, and variables.",
+        githubLink: "https://github.com/EHMD28/m-calc_ver.4",
+        demoLink: null,
+        tags: ["c", "cli"],
+        imageUrl: mcalc4Image,
+        articleLink: resolve("/projects/mcalc4")
+    },
+    {
+        title: "EoS Explorer",
+        description: "EoS Explorer is a web application for studying the equation of state of neutron-star matter.",
+        githubLink: "https://github.com/EHMD28/EOS-explorer",
+        demoLink: "https://ehmd28-eos-explorer.streamlit.app/",
+        tags: ["python", "physics", "web", "streamlit"],
+        imageUrl: eosExplorerImage,
+        articleLink: resolve("/projects/eos-explorer")
+    },
+    {
+        title: "Cosmo",
+        description: "Cosmo is a terminal-based text editor written in Rust using Ratatui. The application supports unicode and modal editing.",
+        githubLink: "https://github.com/EHMD28/cosmo-text-editor",
+        demoLink: null,
+        tags: ["rust", "tui"],
+        imageUrl: cosmoImage,
+        articleLink: resolve("/projects/cosmo")
+    },
+    {
+        title: "Color Sequence Memory Game",
+        description: "This is a clone of the Simon game I made using an Arduino and basic electrical components.",
+        githubLink: "https://github.com/EHMD28/DesignFinalProject",
+        demoLink: null,
+        tags: ["c++", "arduino", "electronics"],
+        imageUrl: csmgImage,
+        articleLink: resolve("/projects/color-sequence-memory-game")
+    },
+    {
+        title: "Chef Suggest",
+        description: "Chef Suggest is a weekly meal generation program. I am going to be make it into a mobile app, but it is currently available as a simple web app.",
+        githubLink: "https://github.com/EHMD28/ChefSuggest/",
+        demoLink: resolve("/programs/chef-suggest"),
+        tags: ["kotlin", "android"],
+        imageUrl: chefSuggestImage,
+        articleLink: resolve("/projects/chef-suggest"),
+    },
+    {
+        title: "Programming Language Game",
+        imageUrl: langGameImage,
+        articleLink: resolve("/projects/lang-game"),
+        description: "This is a web application I made over the summer for a high school summer independent research project. The goal of the game is to identify which programming language corresponds to which space using the relationships between spaces and hint cards.",
+        githubLink: "https://github.com/EHMD28/SummerProject2025",
+        demoLink: resolve("/programs/lang-game"),
+        tags: ["sveltekit", "typescript", "web"]
+    }
+]

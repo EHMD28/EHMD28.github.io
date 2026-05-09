@@ -1,44 +1,30 @@
-<script>
-	import { base } from '$app/paths';
-	import '../app.css';
+<script lang="ts">
+	import favicon from "$lib/assets/favicon.svg";
+	import Footer from "$lib/components/main/Footer.svelte";
+	import Navbar from "$lib/components/main/Navbar.svelte";
+	import "../app.css";
+	import "../themes/dark.css";
 
 	let { children } = $props();
 </script>
 
-<nav>
-	<h1>EHMD28's Personal Website</h1>
-	<div id="links">
-		<h2><a href="{base}/">Home</a></h2>
-		<h2><a href="{base}/projects">Projects</a></h2>
-		<h2><a href="{base}/programs">Programs</a></h2>
-	</div>
-</nav>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
 
-<main>
+<Navbar />
+<main class="dark">
 	{@render children()}
 </main>
+<Footer />
 
 <style>
-	nav {
-		height: 10vh;
-		position: sticky;
-		top: 0;
+	main {
+		flex: 1 0 auto;
 
-		margin-bottom: 1.25rem;
-		padding: 0 2.5rem;
+		padding: 5vh 2.5vw;
 
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		background-color: rgb(0, 0, 255);
-		z-index: 1;
-	}
-
-	nav > div#links {
-		width: 30vw;
-
-		display: flex;
-		justify-content: space-around;
+		background-color: var(--md-sys-color-surface);
+		color: var(--md-sys-color-on-surface);
 	}
 </style>

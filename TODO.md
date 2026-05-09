@@ -1,24 +1,6 @@
-# General
-
-- [ ] Add contact info
-- [ ] Use Material Theme CSS
-  - [ ] Light and dark mode
-- [ ] Make website mobile friendly
-- [ ] Add animations
-- [ ] Add shield defender game
-
-# Projects
-
-- [ ] Add images/video for projects.
-- [ ] Represent projects using file structure and markdown.
-
-# Minerva
-
-- [X] Make answers match the questions being asked (i.e. translation fr-en should have answers in en,
-      verb questions should have verb answers, etc.).
-- [ ] Add multiple genders for noun cards
-- [ ] Handle mapping multiple definitions to one word
-- [ ] Keep track of answer analytics
-- [ ] Sync flashcards with database (Firebase)
-- [ ] Add study mode
-- [ ] Mobile-friendly
+- [ ] Add Stylelint
+- [ ] Add Roboto Mono for code
+- [ ] Add syntax highlighting for code blocks
+- [ ] Make favicon
+- [ ] Add AsteroidDefender to `programs/`
+- [x] Add Chef Suggest to `programs/`
