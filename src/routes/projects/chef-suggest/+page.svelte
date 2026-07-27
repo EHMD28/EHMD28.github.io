@@ -1,5 +1,4 @@
 <script>
-    import { resolve } from "$app/paths";
     import "../projects.css";
 </script>
 
@@ -17,10 +16,7 @@
         >, but I then migrated the codebase to Kotlin using the
         <a href="https://docs.oracle.com/javase/tutorial/uiswing/">Swing</a>
         library. I switched to Kotlin because I wanted to also create an accompanying
-        Android app. Since the Android app is currently a WIP, I created a
-        <a href={resolve("/programs/chef-suggest")}>small web program</a> which can
-        be used in the mean time. I am going to use Compose Multiplatform so I can
-        build to multiple platforms from a single codebase.
+        Android app. Below is a demo of the desktop app.
     </p>
     <br />
     <iframe
@@ -31,6 +27,31 @@
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+    ></iframe>
+    <br />
+    <p>
+        I also created an Android application using the Jetpack libraries,
+        primarily Jetpack Compose, to serve the same purpose. I was originally
+        planning to have a single codebase for both the desktop and mobile
+        version using Compose Multiplatform. However, since my mother's computer
+        broke, it didn't make sense to invest the time and effort. Since I
+        created it much later, the Android app has a much more modern-looking
+        user interface and is more fully featured. I did remove the ability to
+        edit meals in app, since my mom said she didn't use that feature.
+        Instead, the meal data is fetched from a Google Sheets document which
+        can be fetched statically as a TSV file. Currently, there is one one
+        column, but more can be added in the future if necessary. Below is a
+        demo of the mobile app.
+    </p>
+    <br />
+    <iframe
+        width="315"
+        height="560"
+        src="https://www.youtube.com/embed/iTkBJM5ifKY"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
     ></iframe>
 </article>
