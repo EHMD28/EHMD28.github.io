@@ -18,7 +18,9 @@
     <p>{data.description}</p>
     <div class="card-links">
         <a href={data.articleLink}>Article</a>
-        <a href={data.githubLink} target="_blank">GitHub</a>
+        {#if data.githubLink !== null}
+            <a href={data.githubLink} target="_blank">GitHub</a>
+        {/if}
         {#if data.demoLink !== null}
             <a href={data.demoLink} target={getDemoLinkTarget()}>Demo</a>
         {/if}
