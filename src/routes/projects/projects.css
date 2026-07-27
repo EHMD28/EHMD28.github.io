@@ -4,6 +4,10 @@ article {
     align-items: center;
 }
 
+article p {
+    align-self: baseline;
+}
+
 iframe {
     width: 50vw;
     aspect-ratio: 16 / 9;

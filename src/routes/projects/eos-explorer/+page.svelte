@@ -10,7 +10,7 @@
     <h1>EoS Explorer</h1>
     <p>
         <a href="https://github.com/EHMD28/EOS-explorer" target="_blank"
-            >EoS Explorers</a
+            >EoS Explorer</a
         >
         is an interactive physics web applet I created using Python as part of my
         high school capstone project. I worked with a physicist at The Ohio State
