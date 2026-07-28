@@ -12,3 +12,10 @@ iframe {
     width: 50vw;
     aspect-ratio: 16 / 9;
 }
+
+/* TODO: Handle image width within row. */
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}

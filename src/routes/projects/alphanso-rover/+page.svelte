@@ -19,7 +19,11 @@
         project, I felt like I had a much better understanding of mecanum
         drives. Even so, I still went on to develop a drive kinematics
         simulator, in part for myself, and in part for my school's FRC robotics
-        team. Below is a demo of the mecanum drive in action.
+        team. Below is a demo of the mecanum drive in action. The full wiring
+        schematic and code is available in the <a
+            href="https://github.com/EHMD28/alphanso-robot"
+            target="_blank">Github repository</a
+        >.
     </p>
     <br />
     <iframe
@@ -38,16 +42,8 @@
         the chassis correctly and the physical robot.
     </p>
     <br />
-    <div id="image-container">
+    <div class="row">
         <img src={model} width={400} alt="Alphanso Rover 3D model." />
         <img src={topView} width={400} alt="Alphanso Rover top view." />
     </div>
 </article>
-
-<style>
-    #image-container {
-        display: flex;
-        flex-direction: row;
-        gap: 50px;
-    }
-</style>

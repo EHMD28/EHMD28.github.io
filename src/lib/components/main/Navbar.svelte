@@ -5,6 +5,7 @@
 <nav class="dark">
     <h1>El Hajj Malick Diagne Website</h1>
     <div id="quick-links-container">
+        <!-- TODO: Add skills page. -->
         <a href={resolve("/")}>Home</a>
         <a href={resolve("/projects")}>Projects</a>
     </div>
